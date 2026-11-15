@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.DS_Store
+# downloaded PDB entries (scripts/fetch_pdb.py) and MOPAC work directories
+pdb/
+work/
+*.out
+*.aux
+*.arc
+*.res
+*.den
+*.esr

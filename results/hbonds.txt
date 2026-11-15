@@ -1,0 +1,56 @@
+
+## GFP 2WUR (positive control): from the chromophore phenol O (OH), target Glu222
+  proton wire, no water, H-bond <= 3.2 A: 2 groups reached (0 waters), acid/base residues 1 of 77, out to 2.8 A: H148
+    to E222: not reached
+  proton wire, no water, H-bond <= 3.5 A: 2 groups reached (0 waters), acid/base residues 1 of 77, out to 2.8 A: H148
+    to E222: not reached
+  proton wire, waters touching the protein, H-bond <= 3.2 A: 11 groups reached (6 waters), acid/base residues 2 of 77, out to 10.0 A: H148 E222
+    to E222: 3 hops: GYS > w > S205 > E222
+  proton wire, waters touching the protein, H-bond <= 3.5 A: 11 groups reached (6 waters), acid/base residues 2 of 77, out to 10.0 A: H148 E222
+    to E222: 3 hops: GYS > w > S205 > E222
+  + backbone/amide H-bonds, H-bond <= 3.2 A: 571 groups reached (236 waters), acid/base residues 63 of 77, out to 32.3 A
+    fewest hops to >= 20 A: 6 hops, to D173(bb) (20.5 A): GYS > H148 > R168(bb) > H169(bb) > N170(bb) > ILE171(bb) > D173(bb)
+    to E222: 3 hops: GYS > w > S205 > E222
+  + backbone/amide H-bonds, H-bond <= 3.5 A: 596 groups reached (252 waters), acid/base residues 71 of 77, out to 32.4 A
+    fewest hops to >= 20 A: 5 hops, to D173(bb) (20.5 A): GYS > H148 > R168(bb) > H169(bb) > ILE171(bb) > D173(bb)
+    to E222: 3 hops: GYS > w > S205 > E222
+
+## GluN1 LBD 1PB7: from glycine
+  proton wire, no water, H-bond <= 3.2 A: 4 groups reached (0 waters), acid/base residues 2 of 66, out to 3.1 A: R131 D224
+  proton wire, no water, H-bond <= 3.5 A: 4 groups reached (0 waters), acid/base residues 2 of 66, out to 3.1 A: R131 D224
+  proton wire, waters touching the protein, H-bond <= 3.2 A: 19 groups reached (13 waters), acid/base residues 3 of 66, out to 11.3 A: E130 R131 D224
+  proton wire, waters touching the protein, H-bond <= 3.5 A: 20 groups reached (14 waters), acid/base residues 3 of 66, out to 11.5 A: E130 R131 D224
+  + backbone/amide H-bonds, H-bond <= 3.2 A: 631 groups reached (254 waters), acid/base residues 55 of 66, out to 37.1 A
+    fewest hops to >= 20 A: 6 hops, to w (21.7 A): LIG > D224 > Q144(sc) > S225(bb) > E229(bb) > S233(bb) > w
+  + backbone/amide H-bonds, H-bond <= 3.5 A: 650 groups reached (265 waters), acid/base residues 59 of 66, out to 37.1 A
+    fewest hops to >= 20 A: 5 hops, to E190(bb) (20.2 A): LIG > S180(bb) > ILE183(bb) > R187(bb) > Q188(bb) > E190(bb)
+
+## GluN1 LBD 1PB8: from D-serine
+  proton wire, no water, H-bond <= 3.2 A: 4 groups reached (0 waters), acid/base residues 2 of 69, out to 2.9 A: R131 D224
+  proton wire, no water, H-bond <= 3.5 A: 4 groups reached (0 waters), acid/base residues 2 of 69, out to 2.9 A: R131 D224
+  proton wire, waters touching the protein, H-bond <= 3.2 A: 17 groups reached (11 waters), acid/base residues 3 of 69, out to 11.3 A: E130 R131 D224
+  proton wire, waters touching the protein, H-bond <= 3.5 A: 19 groups reached (12 waters), acid/base residues 3 of 69, out to 13.3 A: E130 R131 D224
+  + backbone/amide H-bonds, H-bond <= 3.2 A: 679 groups reached (280 waters), acid/base residues 57 of 69, out to 36.7 A
+    fewest hops to >= 20 A: 6 hops, to CYS236(bb) (22.5 A): DSN > D224 > D224(bb) > LEU228(bb) > ALA232(bb) > K235(bb) > CYS236(bb)
+  + backbone/amide H-bonds, H-bond <= 3.5 A: 691 groups reached (285 waters), acid/base residues 62 of 69, out to 36.7 A
+    fewest hops to >= 20 A: 6 hops, to D291(bb) (23.8 A): DSN > D224 > D224(bb) > VAL227(bb) > PHE230(bb) > Q234(bb) > D291(bb)
+
+## GluN1 LBD 1PBQ: from DCKA
+  proton wire, no water, H-bond <= 3.2 A: 1 groups reached (0 waters), acid/base residues 1 of 60, out to 2.8 A: R131
+  proton wire, no water, H-bond <= 3.5 A: 2 groups reached (0 waters), acid/base residues 1 of 60, out to 3.4 A: R131
+  proton wire, waters touching the protein, H-bond <= 3.2 A: 25 groups reached (21 waters), acid/base residues 2 of 60, out to 14.9 A: E96 R131
+  proton wire, waters touching the protein, H-bond <= 3.5 A: 48 groups reached (37 waters), acid/base residues 7 of 60, out to 16.3 A: E96 R131 K142 D224 E229 D281 R286
+  + backbone/amide H-bonds, H-bond <= 3.2 A: 573 groups reached (207 waters), acid/base residues 43 of 60, out to 34.0 A
+    fewest hops to >= 20 A: 7 hops, to K151 (24.4 A): DK1 > w > w > w > ALA206(bb) > ILE210(bb) > R214(bb) > K151
+  + backbone/amide H-bonds, H-bond <= 3.5 A: 594 groups reached (215 waters), acid/base residues 53 of 60, out to 34.0 A
+    fewest hops to >= 20 A: 5 hops, to E190(bb) (20.5 A): DK1 > w > S180(bb) > Y184(bb) > Q188(bb) > E190(bb)
+
+## GluA2 LBD 1FTJ: from glutamate
+  proton wire, no water, H-bond <= 3.2 A: 8 groups reached (0 waters), acid/base residues 4 of 78, out to 7.6 A: Y16 R96 E193 Y220
+  proton wire, no water, H-bond <= 3.5 A: 8 groups reached (0 waters), acid/base residues 4 of 78, out to 7.6 A: Y16 R96 E193 Y220
+  proton wire, waters touching the protein, H-bond <= 3.2 A: 27 groups reached (13 waters), acid/base residues 9 of 78, out to 12.2 A: E13 Y16 Y61 R96 Y190 E193 D216 K218 Y220
+  proton wire, waters touching the protein, H-bond <= 3.5 A: 29 groups reached (15 waters), acid/base residues 9 of 78, out to 12.2 A: E13 Y16 Y61 R96 Y190 E193 D216 K218 Y220
+  + backbone/amide H-bonds, H-bond <= 3.2 A: 424 groups reached (87 waters), acid/base residues 40 of 78, out to 29.2 A
+    fewest hops to >= 20 A: 6 hops, to E260(bb) (22.1 A): LIG > w > E193(bb) > T195(bb) > Y199(bb) > Q202(bb) > E260(bb)
+  + backbone/amide H-bonds, H-bond <= 3.5 A: 445 groups reached (92 waters), acid/base residues 51 of 78, out to 29.2 A
+    fewest hops to >= 20 A: 6 hops, to E260(bb) (22.1 A): LIG > w > E193(bb) > T195(bb) > Y199(bb) > Q202(bb) > E260(bb)

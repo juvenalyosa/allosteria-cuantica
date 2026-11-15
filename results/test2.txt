@@ -1,0 +1,38 @@
+glycine PM7 ESP charges (sum +0.000): [-0.414, -0.076, 0.23, -0.631, -0.445, 0.302, 0.383, 0.387, 0.135, 0.13]
+
+## GluN1 (1PB7), candidate aromatic path from the glycine
+  site   model charge | vertical ionisation energy, eV: alone | eps=4 | eps=1 (relative to the first site: alone / eps=4 / eps=1)
+  Gly    +0            |   8.41 |   9.19 |  11.49   (+0.00 / +0.00 / +0.00)
+  F92    +0            |   9.05 |   9.09 |   9.19   (+0.64 / -0.10 / -2.30)
+  W223   +0            |   7.88 |   7.60 |   6.79   (-0.53 / -1.59 / -4.70)
+  F221   +0            |   9.06 |   8.82 |   8.11   (+0.65 / -0.37 / -3.37)
+  Y203   +0            |   8.59 |   8.28 |   7.36   (+0.18 / -0.91 / -4.13)
+  H201   +0            |   9.08 |   9.18 |   9.48   (+0.68 / -0.01 / -2.01)
+  H197   +0            |   9.08 |   9.31 |  10.01   (+0.67 / +0.12 / -1.48)
+  Y173   +0            |   8.66 |   8.97 |   9.88   (+0.26 / -0.22 / -1.61)
+  F171   +0            |   9.05 |   9.59 |  11.21   (+0.65 / +0.40 / -0.28)
+  pair            closest heavy atoms | coupling |H| between the highest occupied orbitals, meV: HOMO-HOMO, largest of the 2x2 | step in eps=4 site energy, eV
+     Gly-F92       3.0 A                 |      5.4 |     22.9 | -0.10
+     F92-W223      3.6 A                 |      1.4 |      1.4 | -1.48
+    W223-F221      3.4 A                 |     12.6 |     15.7 | +1.22
+    F221-Y203      5.9 A                 |      0.1 |      0.2 | -0.54
+    Y203-H201      5.3 A                 |      0.2 |      0.3 | +0.90
+    H201-H197      3.5 A                 |     20.7 |     21.1 | +0.13
+    H197-Y173      3.6 A                 |     19.1 |     24.4 | -0.34
+    Y173-F171      4.4 A                 |      0.4 |      1.6 | +0.62
+
+## photolyase (1DNP), Trp triad (control; FAD and MHF not in the environment)
+  site   model charge | vertical ionisation energy, eV: alone | eps=4 | eps=1 (relative to the first site: alone / eps=4 / eps=1)
+  W382   +0            |   7.88 |   7.07 |   4.64   (+0.00 / +0.00 / +0.00)
+  W359   +0            |   7.87 |   7.26 |   5.43   (-0.01 / +0.19 / +0.79)
+  W306   +0            |   7.87 |   7.07 |   4.67   (-0.01 / +0.00 / +0.03)
+  pair            closest heavy atoms | coupling |H| between the highest occupied orbitals, meV: HOMO-HOMO, largest of the 2x2 | step in eps=4 site energy, eV
+    W382-W359      4.2 A                 |      2.7 |      2.7 | +0.19
+    W359-W306      3.9 A                 |      0.2 |      1.6 | -0.19
+
+## photolyase (1DNP), branch seen in the geometric search
+  site   model charge | vertical ionisation energy, eV: alone | eps=4 | eps=1 (relative to the first site: alone / eps=4 / eps=1)
+  W382   +0            |   7.88 |   7.07 |   4.64   (+0.00 / +0.00 / +0.00)
+  W316   +0            |   7.87 |   7.00 |   4.39   (-0.01 / -0.07 / -0.25)
+  pair            closest heavy atoms | coupling |H| between the highest occupied orbitals, meV: HOMO-HOMO, largest of the 2x2 | step in eps=4 site energy, eV
+    W382-W316      3.7 A                 |      2.8 |      3.1 | -0.07

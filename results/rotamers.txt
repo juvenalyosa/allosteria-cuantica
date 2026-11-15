@@ -1,0 +1,66 @@
+
+## GluN1 LBD 1PB7 + glycine  [W/Y: 14 side chains, 227 conformations without clashes]
+  crystal: to a side chain >= 20 A away, longest hop 13.2 A: glycine > (3.8) W223 > (13.2) Y18 > (3.5) Y64 > (12.1) Y82
+  turned : to a side chain >= 20 A away, longest hop 12.3 A: glycine > (3.8) W223 > (12.3) Y18 [chi -60/165, turned] > (3.4) W284 > (3.8) Y64 > (12.1) Y82
+
+## GluN1 LBD 1PBQ (DCKA antagonist; glycine site placed)  [W/Y: 14 side chains, 245 conformations without clashes]
+  crystal: to a side chain >= 20 A away, longest hop 12.8 A: glycine > (6.9) W223 > (12.8) Y18 > (3.5) Y64 > (12.1) Y82
+  turned : to a side chain >= 20 A away, longest hop 12.1 A: glycine > (6.8) W223 [chi -165/-120, turned] > (12.1) Y18 [chi -75/15, turned] > (3.1) Y64 [chi 60/105, turned] > (12.1) Y82
+
+## photolyase 1DNP, from FAD  [W/Y: 29 side chains, 188 conformations without clashes]
+  crystal: to a side chain >= 20 A away, longest hop 8.8 A: FAD > (3.7) W382 > (3.7) W316 > (8.8) Y323 > (6.2) Y446 > (4.0) W434
+  crystal: to W306, longest hop 5.2 A: FAD > (3.7) W382 > (5.2) W359 > (3.9) W306
+  turned : to a side chain >= 20 A away, longest hop 8.5 A: FAD > (7.7) W316 [chi 180/60, turned] > (8.5) Y323 > (6.2) Y446 > (4.0) W434
+  turned : to W306, longest hop 5.0 A: FAD > (3.7) W382 > (5.0) W359 [chi 60/-90, turned] > (4.1) W306
+
+## ribonucleotide reductase 6W4X (alpha B + beta C), from Y122/C  [W/Y/C: 82 side chains, 725 conformations without clashes]
+  crystal: to a side chain >= 20 A away, longest hop 8.9 A: Y122/C > (7.9) W48/C > (8.9) Y356/C > (8.0) Y413/B > (6.5) C439/B > (8.9) C225/B
+  crystal: to C439/B, longest hop 8.9 A: Y122/C > (7.9) W48/C > (8.9) Y356/C > (8.0) Y413/B > (6.5) C439/B
+  crystal: to Y731/B, longest hop 8.9 A: Y122/C > (7.9) W48/C > (8.9) Y356/C > (7.7) Y731/B
+  turned : to a side chain >= 20 A away, longest hop 8.9 A: Y122/C > (7.7) W48/C [chi 60/-60, turned] > (8.9) Y356/C > (8.0) Y413/B > (6.5) C439/B > (8.9) C225/B
+  turned : to C439/B, longest hop 8.9 A: Y122/C > (7.7) W48/C [chi 60/-60, turned] > (8.9) Y356/C > (8.0) Y413/B > (6.5) C439/B
+  turned : to Y731/B, longest hop 8.9 A: Y122/C > (7.7) W48/C [chi 60/-60, turned] > (8.9) Y356/C > (7.7) Y731/B
+
+## GluN1 LBD 1PB7 + glycine  [W/Y/F/H: 36 side chains, 703 conformations without clashes]
+  crystal: to a side chain >= 20 A away, longest hop 6.4 A: glycine > (3.3) F92 > (3.6) W223 > (3.5) F221 > (6.1) Y203 > (6.4) H201 > (3.7) H197 > (3.5) Y173 > (4.4) F171
+  turned : to a side chain >= 20 A away, longest hop 5.4 A: glycine > (3.0) F92 [chi -75/135, turned] > (3.1) W223 > (3.8) F221 [chi 180/45, turned] > (5.1) Y203 [chi -60/75, turned] > (5.4) H201 [chi -75/-90, turned] > (4.4) H197 > (3.5) Y173 > (4.4) F171
+
+## GluN1 LBD 1PBQ (DCKA antagonist; glycine site placed)  [W/Y/F/H: 35 side chains, 746 conformations without clashes]
+  crystal: to a side chain >= 20 A away, longest hop 6.9 A: glycine > (6.9) W223 > (3.5) F221 > (6.2) Y203 > (6.4) H201 > (3.8) H197 > (6.3) F171
+  turned : to a side chain >= 20 A away, longest hop 6.8 A: glycine > (6.8) W223 [chi -165/-120, turned] > (3.5) F221 > (6.2) Y203 > (6.4) H201 > (5.9) Y173 [chi 60/-0, turned] > (5.1) F171
+
+## photolyase 1DNP, from FAD  [W/Y/F/H: 63 side chains, 948 conformations without clashes]
+  crystal: to a side chain >= 20 A away, longest hop 6.2 A: FAD > (3.7) W382 > (3.7) W316 > (4.5) F350 > (3.2) Y323 > (6.2) Y446 > (4.0) W434
+  crystal: to W306, longest hop 5.2 A: FAD > (3.7) W382 > (5.2) W359 > (3.9) W306
+  turned : to a side chain >= 20 A away, longest hop 5.3 A: FAD > (3.1) Y281 [chi -60/150, turned] > (3.1) F150 [chi -60/30, turned] > (3.0) F280 [chi -165/105, turned] > (3.2) F153 [chi -165/75, turned] > (3.1) H283 [chi -75/180, turned] > (5.3) Y105 [chi -45/165, turned] > (4.6) Y103 > (3.6) Y101 > (4.6) W6
+  turned : to W306, longest hop 5.0 A: FAD > (3.7) W382 > (5.0) W359 [chi 60/-90, turned] > (4.1) W306
+
+## ribonucleotide reductase 6W4X (alpha B + beta C), from Y122/C  [W/Y/F/H/C: 155 side chains, 2306 conformations without clashes]
+  crystal: to a side chain >= 20 A away, longest hop 5.2 A: Y122/C > (5.2) H118/C > (4.0) H241/C > (4.0) W107/C > (3.7) F36/C > (4.7) Y33/C
+  crystal: to C439/B, longest hop 8.9 A: Y122/C > (5.2) H118/C > (4.5) W48/C > (8.9) Y356/C > (8.0) Y413/B > (6.5) C439/B
+  crystal: to Y731/B, longest hop 8.9 A: Y122/C > (5.2) H118/C > (4.5) W48/C > (8.9) Y356/C > (7.7) Y731/B
+  turned : to a side chain >= 20 A away, longest hop 5.2 A: Y122/C > (5.2) H118/C > (4.0) H241/C > (4.0) W107/C > (3.7) F36/C > (4.7) Y33/C
+  turned : to C439/B, longest hop 8.0 A: Y122/C > (3.3) F212/C > (4.5) F208/C [chi -75/60, turned] > (4.6) Y79/C [chi 165/135, turned] > (3.7) W286/C [chi 165/-90, turned] > (5.7) C214/C [chi -60, turned] > (4.4) F291/C [chi -75/90, turned] > (5.7) Y50/B [chi -75/0, turned] > (5.4) F49/B [chi 75/30, turned] > (4.0) H46/B > (7.5) H23/B [chi 165/120, turned] > (7.7) W28/B [chi -75/180, turned] > (6.7) F87/B > (4.7) F97/B [chi 165/75, turned] > (7.6) H137/B > (7.0) Y197/B > (7.5) F196/B [chi -165/45, turned] > (8.0) F467/B [chi -75/150, turned] > (6.8) Y550/B [chi -60/-0, turned] > (7.4) H596/B > (7.8) H541/B > (6.6) Y583/B > (8.0) H419/B [chi -165/0, turned] > (6.0) C420/B [chi -45, turned] > (7.9) F369/B [chi -60/90, turned] > (6.1) W309/B > (6.5) H310/B > (5.2) Y306/B > (6.7) F305/B > (5.9) Y413/B > (6.5) C439/B
+  turned : to Y731/B, longest hop 8.0 A: Y122/C > (3.3) F212/C > (4.5) F208/C [chi -75/60, turned] > (4.6) Y79/C [chi 165/135, turned] > (3.7) W286/C [chi 165/-90, turned] > (5.7) C214/C [chi -60, turned] > (4.4) F291/C [chi -75/90, turned] > (5.7) Y50/B [chi -75/0, turned] > (5.4) F49/B [chi 75/30, turned] > (4.0) H46/B > (7.5) H23/B [chi 165/120, turned] > (7.7) W28/B [chi -75/180, turned] > (6.7) F87/B > (4.7) F97/B [chi 165/75, turned] > (7.6) H137/B > (7.0) Y197/B > (7.5) F196/B [chi -165/45, turned] > (8.0) F467/B [chi -75/150, turned] > (6.8) Y550/B [chi -60/-0, turned] > (7.4) H596/B > (7.8) H541/B > (6.6) Y583/B > (8.0) H419/B [chi -165/0, turned] > (6.0) C420/B [chi -45, turned] > (7.9) F369/B [chi -60/90, turned] > (6.1) W309/B > (6.5) H310/B > (5.2) Y306/B > (6.7) F305/B > (5.9) Y413/B > (3.8) Y731/B
+
+## GluN1 LBD 1PB7 + glycine  [W/Y/F/H/M/C: 52 side chains, 828 conformations without clashes]
+  crystal: to a side chain >= 20 A away, longest hop 6.4 A: glycine > (3.3) F92 > (3.6) W223 > (3.5) F221 > (6.1) Y203 > (6.4) H201 > (3.7) H197 > (3.5) Y173 > (4.4) F171
+  turned : to a side chain >= 20 A away, longest hop 5.4 A: glycine > (3.0) F92 [chi -75/135, turned] > (3.1) W223 > (3.8) F221 [chi 180/45, turned] > (5.1) Y203 [chi -60/75, turned] > (5.4) H201 [chi -75/-90, turned] > (4.4) H197 > (3.5) Y173 > (4.4) F171
+
+## GluN1 LBD 1PBQ (DCKA antagonist; glycine site placed)  [W/Y/F/H/M/C: 51 side chains, 868 conformations without clashes]
+  crystal: to a side chain >= 20 A away, longest hop 6.5 A: glycine > (3.9) F250 > (4.1) F16 > (3.8) F66 > (4.4) W284 > (3.8) Y64 > (6.5) C62 > (2.0) C28
+  turned : to a side chain >= 20 A away, longest hop 6.5 A: glycine > (3.7) F250 [chi -75/135, turned] > (3.7) F16 [chi -75/135, turned] > (3.3) F66 [chi -165/105, turned] > (4.1) W284 > (3.8) Y64 > (6.5) C62 > (2.0) C28
+
+## photolyase 1DNP, from FAD  [W/Y/F/H/M/C: 78 side chains, 1145 conformations without clashes]
+  crystal: to a side chain >= 20 A away, longest hop 5.8 A: FAD > (3.6) Y281 > (3.6) W277 > (3.4) F280 > (3.9) M146 > (4.1) M140 > (5.8) H144
+  crystal: to W306, longest hop 5.2 A: FAD > (3.7) W382 > (5.2) W359 > (3.9) W306
+  turned : to a side chain >= 20 A away, longest hop 3.3 A: FAD > (3.1) Y281 [chi -60/150, turned] > (3.1) F150 [chi -60/30, turned] > (3.0) F280 [chi -165/105, turned] > (3.2) F153 [chi -165/135, turned] > (3.2) M146 [chi 165/60, turned] > (3.2) M140 > (3.3) H144 [chi -165/-0, turned]
+  turned : to W306, longest hop 5.0 A: FAD > (3.7) W382 > (5.0) W359 [chi 60/-90, turned] > (4.1) W306
+
+## ribonucleotide reductase 6W4X (alpha B + beta C), from Y122/C  [W/Y/F/H/M/C: 178 side chains, 2666 conformations without clashes]
+  crystal: to a side chain >= 20 A away, longest hop 5.2 A: Y122/C > (5.2) H118/C > (4.0) H241/C > (4.0) W107/C > (3.7) F36/C > (3.9) M17/C > (3.6) F18/C > (4.7) F19/C > (4.1) W167/C > (3.2) H168/C > (3.7) Y2/C
+  crystal: to C439/B, longest hop 8.9 A: Y122/C > (5.2) H118/C > (4.5) W48/C > (8.9) Y356/C > (8.0) Y413/B > (6.5) C439/B
+  crystal: to Y731/B, longest hop 8.9 A: Y122/C > (5.2) H118/C > (4.5) W48/C > (8.9) Y356/C > (7.7) Y731/B
+  turned : to a side chain >= 20 A away, longest hop 5.2 A: Y122/C > (5.2) H118/C > (4.0) H241/C > (4.0) W107/C > (3.7) F36/C > (3.9) M17/C > (3.6) F18/C > (4.7) F19/C > (4.1) W167/C > (3.2) H168/C > (3.7) Y2/C
+  turned : to C439/B, longest hop 7.7 A: Y122/C > (3.3) F212/C > (4.5) F208/C [chi -75/60, turned] > (4.6) Y79/C [chi 165/135, turned] > (3.7) W286/C [chi 165/-90, turned] > (5.7) C214/C [chi -60, turned] > (4.4) F291/C [chi -75/90, turned] > (5.7) Y50/B [chi -75/0, turned] > (5.4) F49/B [chi 75/30, turned] > (4.0) H46/B > (7.5) H23/B [chi 165/120, turned] > (7.7) W28/B [chi -75/180, turned] > (6.7) F87/B > (5.6) F97/B [chi 45/135, turned] > (7.7) Y94/B [chi -165/75, turned] > (7.3) F171/B [chi -75/105, turned] > (7.6) M131/B [chi 165/-180, turned] > (4.3) Y123/B > (7.2) C179/B > (6.4) F222/B [chi -45/105, turned] > (7.7) Y498/B [chi -60/60, turned] > (7.4) M508/B [chi -165/-60, turned] > (7.6) C565/B > (7.6) F426/B > (7.5) C420/B [chi -165, turned] > (7.6) H419/B [chi -165/30, turned] > (3.2) H423/B > (6.3) Y583/B > (7.1) H541/B [chi -165/0, turned] > (7.5) F544/B > (4.4) F520/B > (4.3) Y531/B > (4.4) M672/B > (7.3) W670/B > (7.4) Y699/B > (5.6) M403/B > (6.5) F399/B > (3.5) M308/B > (7.6) Y306/B [chi 45/60, turned] > (7.1) F305/B > (5.9) Y413/B > (6.5) C439/B
+  turned : to Y731/B, longest hop 7.7 A: Y122/C > (3.3) F212/C > (4.5) F208/C [chi -75/60, turned] > (4.6) Y79/C [chi 165/135, turned] > (3.7) W286/C [chi 165/-90, turned] > (5.7) C214/C [chi -60, turned] > (4.4) F291/C [chi -75/90, turned] > (5.7) Y50/B [chi -75/0, turned] > (5.4) F49/B [chi 75/30, turned] > (4.0) H46/B > (7.5) H23/B [chi 165/120, turned] > (7.7) W28/B [chi -75/180, turned] > (6.7) F87/B > (5.6) F97/B [chi 45/135, turned] > (7.7) Y94/B [chi -165/75, turned] > (7.3) F171/B [chi -75/105, turned] > (7.6) M131/B [chi 165/-180, turned] > (4.3) Y123/B > (7.2) C179/B > (6.4) F222/B [chi -45/105, turned] > (7.7) Y498/B [chi -60/60, turned] > (7.4) M508/B [chi -165/-60, turned] > (7.6) C565/B > (7.6) F426/B > (7.5) C420/B [chi -165, turned] > (7.6) H419/B [chi -165/30, turned] > (3.2) H423/B > (6.3) Y583/B > (7.1) H541/B [chi -165/0, turned] > (7.5) F544/B > (4.4) F520/B > (4.3) Y531/B > (4.4) M672/B > (7.3) W670/B > (7.4) Y699/B > (5.6) M403/B > (6.5) F399/B > (3.5) M308/B > (7.6) Y306/B [chi 45/60, turned] > (7.1) F305/B > (5.9) Y413/B > (3.8) Y731/B

@@ -1,0 +1,211 @@
+# Allosteric pairs: source = the agonist / substrate (moved onto the other state by the backbone of the binding site)
+
+## GluN1 LBD, 1PB7 (glycine)  [W/Y: 14 side chains; farthest protein atom 34.5 A from glycine]
+  reach from the source with every hop <= T: T=5: 1 side chains, out to 3.8 A; T=6: 1 side chains, out to 3.8 A; T=7: 1 side chains, out to 3.8 A; T=8: 1 side chains, out to 3.8 A
+  shortest longest-hop to any side chain >= 20 A away: 13.2 A, to Y82 (20.4 A): glycine > (3.8) W223 > (13.2) Y18 > (3.5) Y64 > (12.1) Y82
+  random side chains (same number, 200 draws): median 11.4 A (5-95 %: 8.9-14.3); draws as good or better: 86 %
+
+## GluN1 LBD, 1PB8 (D-serine); glycine placed by 15 site residues, rmsd 0.08 A  [W/Y: 14 side chains; farthest protein atom 34.6 A from glycine]
+  reach from the source with every hop <= T: T=5: 1 side chains, out to 4.1 A; T=6: 1 side chains, out to 4.1 A; T=7: 1 side chains, out to 4.1 A; T=8: 1 side chains, out to 4.1 A
+  shortest longest-hop to any side chain >= 20 A away: 13.3 A, to Y82 (20.4 A): glycine > (4.1) W223 > (13.3) Y18 > (3.5) Y64 > (12.1) Y82
+  random side chains (same number, 200 draws): median 11.4 A (5-95 %: 8.4-16.3); draws as good or better: 83 %
+  1PB7 -> 1PB8: 14 side chains in both; bottleneck changes >= 1 A: 0
+
+## GluN1 LBD, 1PBQ (DCKA, antagonist); glycine placed by 15 site residues, rmsd 2.35 A  [W/Y: 14 side chains; farthest protein atom 34.7 A from glycine]
+  reach from the source with every hop <= T: T=5: 0 side chains, out to 0.0 A; T=6: 0 side chains, out to 0.0 A; T=7: 1 side chains, out to 6.9 A; T=8: 1 side chains, out to 6.9 A
+  shortest longest-hop to any side chain >= 20 A away: 12.8 A, to Y82 (21.3 A): glycine > (6.9) W223 > (12.8) Y18 > (3.5) Y64 > (12.1) Y82
+  random side chains (same number, 200 draws): median 11.2 A (5-95 %: 8.5-14.9); draws as good or better: 80 %
+  1PB7 -> 1PBQ: 14 side chains in both; bottleneck changes >= 1 A: 3
+    W106: 8.5 -> 9.8 A (distance from source 8.5 -> 9.8)
+    Y134: 8.5 -> 9.8 A (distance from source 13.9 -> 15.0)
+    W223: 3.8 -> 6.9 A (distance from source 3.8 -> 6.9)
+
+## GluN1 LBD, 1PB7 (glycine)  [W/Y/M/C: 30 side chains; farthest protein atom 34.5 A from glycine]
+  reach from the source with every hop <= T: T=5: 1 side chains, out to 3.8 A; T=6: 1 side chains, out to 3.8 A; T=7: 2 side chains, out to 6.0 A; T=8: 5 side chains, out to 13.9 A
+  shortest longest-hop to any side chain >= 20 A away: 9.0 A, to C62 (24.1 A): glycine > (6.0) M109 > (9.0) C67 > (9.0) W284 > (3.8) Y64 > (6.7) C62
+
+## GluN1 LBD, 1PB8 (D-serine); glycine placed by 15 site residues, rmsd 0.08 A  [W/Y/M/C: 30 side chains; farthest protein atom 34.6 A from glycine]
+  reach from the source with every hop <= T: T=5: 1 side chains, out to 4.1 A; T=6: 1 side chains, out to 4.1 A; T=7: 2 side chains, out to 6.0 A; T=8: 5 side chains, out to 13.8 A
+  shortest longest-hop to any side chain >= 20 A away: 9.0 A, to C62 (24.1 A): glycine > (6.0) M109 > (8.9) C67 > (9.0) W284 > (3.8) Y64 > (6.7) C62
+  1PB7 -> 1PB8: 30 side chains in both; bottleneck changes >= 1 A: 0
+
+## GluN1 LBD, 1PBQ (DCKA, antagonist); glycine placed by 15 site residues, rmsd 2.35 A  [W/Y/M/C: 30 side chains; farthest protein atom 34.7 A from glycine]
+  reach from the source with every hop <= T: T=5: 0 side chains, out to 0.0 A; T=6: 0 side chains, out to 0.0 A; T=7: 1 side chains, out to 6.9 A; T=8: 2 side chains, out to 7.1 A
+  shortest longest-hop to any side chain >= 20 A away: 8.9 A, to C62 (23.9 A): glycine > (7.1) M109 > (8.9) C67 > (8.8) W284 > (3.8) Y64 > (6.5) C62
+  1PB7 -> 1PBQ: 30 side chains in both; bottleneck changes >= 1 A: 5
+    C236: 11.9 -> 10.2 A (distance from source 24.8 -> 26.4)
+    C290: 11.9 -> 10.2 A (distance from source 25.1 -> 25.8)
+    M109: 6.0 -> 7.1 A (distance from source 6.0 -> 7.1)
+    Y143: 9.0 -> 10.1 A (distance from source 13.6 -> 13.3)
+    W223: 3.8 -> 6.9 A (distance from source 3.8 -> 6.9)
+    pair distances that change by >= 1.5 A (one of them <= 8 A): Y184-M194 7.8->9.7
+
+## GluA2 LBD, 1FTJ (glutamate)  [W/Y: 17 side chains; farthest protein atom 32.7 A from glutamate]
+  reach from the source with every hop <= T: T=5: 8 side chains, out to 16.5 A; T=6: 10 side chains, out to 16.5 A; T=7: 12 side chains, out to 16.5 A; T=8: 12 side chains, out to 16.5 A
+
+## GluA2 LBD, 1FTO (apo); glutamate placed by 20 site residues, rmsd 2.04 A  [W/Y: 17 side chains; farthest protein atom 32.3 A from glutamate]
+  reach from the source with every hop <= T: T=5: 8 side chains, out to 17.2 A; T=6: 8 side chains, out to 17.2 A; T=7: 12 side chains, out to 17.2 A; T=8: 12 side chains, out to 17.2 A
+  shortest longest-hop to any side chain >= 20 A away: 10.7 A, to Y51 (21.5 A): glutamate > (4.1) Y220 > (3.3) Y16 > (3.5) W255 > (3.9) Y35 > (4.4) W254 > (10.7) Y32 > (8.2) Y51
+  random side chains (same number, 200 draws): median 10.1 A (5-95 %: 8.0-13.2); draws as good or better: 66 %
+  1FTJ -> 1FTO: 17 side chains in both; bottleneck changes >= 1 A: 3
+    W71: 9.2 -> 10.3 A (distance from source 9.2 -> 10.4)
+    Y80: 9.2 -> 10.3 A (distance from source 15.7 -> 17.2)
+    Y61: 3.4 -> 4.9 A (distance from source 3.4 -> 4.9)
+
+## GluA2 LBD, 1FTJ (glutamate)  [W/Y/M/C: 31 side chains; farthest protein atom 32.7 A from glutamate]
+  reach from the source with every hop <= T: T=5: 13 side chains, out to 16.5 A; T=6: 16 side chains, out to 16.5 A; T=7: 21 side chains, out to 16.5 A; T=8: 21 side chains, out to 16.5 A
+  shortest longest-hop to any side chain >= 20 A away: 9.7 A, to C261 (20.9 A): glutamate > (3.7) Y220 > (3.3) Y16 > (3.5) W255 > (3.8) Y256 > (9.7) C261
+
+## GluA2 LBD, 1FTO (apo); glutamate placed by 20 site residues, rmsd 2.04 A  [W/Y/M/C: 30 side chains; farthest protein atom 32.3 A from glutamate]
+  reach from the source with every hop <= T: T=5: 13 side chains, out to 17.2 A; T=6: 13 side chains, out to 17.2 A; T=7: 21 side chains, out to 17.2 A; T=8: 21 side chains, out to 17.2 A
+  shortest longest-hop to any side chain >= 20 A away: 8.9 A, to M19 (20.3 A): glutamate > (4.1) Y220 > (4.1) M107 > (3.3) Y35 > (4.4) W254 > (3.9) M18 > (8.9) Y32 > (3.0) M19
+  1FTJ -> 1FTO: 30 side chains in both; bottleneck changes >= 1 A: 4
+    W71: 9.2 -> 10.3 A (distance from source 9.2 -> 10.4)
+    Y80: 9.2 -> 10.3 A (distance from source 15.7 -> 17.2)
+    M74: 3.6 -> 4.9 A (distance from source 6.1 -> 8.0)
+    Y61: 3.4 -> 4.9 A (distance from source 3.4 -> 4.9)
+    pair distances that change by >= 1.5 A (one of them <= 8 A): M196-Y220 2.8->7.3; M107-M196 7.4->10.8; M196-Y199 7.6->4.3; Y16-M196 3.9->6.1; Y61-M196 4.5->6.7; M114-M196 8.5->6.4
+
+## maltose-binding protein, 1ANF (maltose)  [W/Y: 23 side chains; farthest protein atom 33.1 A from maltose]
+  reach from the source with every hop <= T: T=5: 6 side chains, out to 8.7 A; T=6: 7 side chains, out to 8.7 A; T=7: 8 side chains, out to 16.7 A; T=8: 15 side chains, out to 20.2 A
+  shortest longest-hop to any side chain >= 20 A away: 7.7 A, to Y117 (20.2 A): maltose > (3.8) W230 > (7.7) W232 > (4.3) Y242 > (7.3) Y117
+  random side chains (same number, 200 draws): median 9.8 A (5-95 %: 7.6-12.4); draws as good or better: 6 %
+
+## maltose-binding protein, 1OMP (apo); maltose placed by 21 site residues, rmsd 3.08 A  [W/Y: 23 side chains; farthest protein atom 36.1 A from maltose]
+  reach from the source with every hop <= T: T=5: 4 side chains, out to 7.6 A; T=6: 4 side chains, out to 7.6 A; T=7: 8 side chains, out to 16.9 A; T=8: 16 side chains, out to 21.1 A
+  shortest longest-hop to any side chain >= 20 A away: 7.4 A, to Y117 (21.1 A): maltose > (3.9) Y155 > (3.8) W230 > (7.4) W232 > (4.2) Y242 > (7.3) Y117
+  random side chains (same number, 200 draws): median 9.9 A (5-95 %: 7.8-12.3); draws as good or better: 4 %
+  1ANF -> 1OMP: 23 side chains in both; bottleneck changes >= 1 A: 7
+    Y99: 9.1 -> 7.7 A (distance from source 14.4 -> 13.1)
+    Y90: 10.1 -> 9.1 A (distance from source 17.5 -> 16.7)
+    W94: 10.1 -> 9.1 A (distance from source 18.1 -> 17.5)
+    Y106: 10.1 -> 9.1 A (distance from source 16.9 -> 17.8)
+    Y70: 5.1 -> 6.5 A (distance from source 7.3 -> 10.3)
+    W158: 4.9 -> 6.4 A (distance from source 8.7 -> 10.2)
+    W62: 3.2 -> 6.5 A (distance from source 3.2 -> 6.5)
+    pair distances that change by >= 1.5 A (one of them <= 8 A): W62-W340 6.9->11.8; Y99-Y176 9.1->7.0
+
+## maltose-binding protein, 1ANF (maltose)  [W/Y/M/C: 29 side chains; farthest protein atom 33.1 A from maltose]
+  reach from the source with every hop <= T: T=5: 8 side chains, out to 8.7 A; T=6: 9 side chains, out to 8.7 A; T=7: 10 side chains, out to 16.7 A; T=8: 21 side chains, out to 20.2 A
+  shortest longest-hop to any side chain >= 20 A away: 7.7 A, to M224 (20.2 A): maltose > (3.8) W230 > (7.7) W232 > (4.3) Y242 > (7.3) Y117 > (5.8) M224
+
+## maltose-binding protein, 1OMP (apo); maltose placed by 21 site residues, rmsd 3.08 A  [W/Y/M/C: 29 side chains; farthest protein atom 36.1 A from maltose]
+  reach from the source with every hop <= T: T=5: 6 side chains, out to 7.6 A; T=6: 6 side chains, out to 7.6 A; T=7: 10 side chains, out to 16.9 A; T=8: 22 side chains, out to 21.8 A
+  shortest longest-hop to any side chain >= 20 A away: 7.4 A, to Y117 (21.1 A): maltose > (3.9) Y155 > (3.8) W230 > (7.4) W232 > (4.2) Y242 > (7.3) Y117
+  1ANF -> 1OMP: 29 side chains in both; bottleneck changes >= 1 A: 4
+    Y99: 9.1 -> 7.6 A (distance from source 14.4 -> 13.1)
+    Y70: 5.1 -> 6.5 A (distance from source 7.3 -> 10.3)
+    W158: 4.9 -> 6.4 A (distance from source 8.7 -> 10.2)
+    W62: 3.2 -> 6.5 A (distance from source 3.2 -> 6.5)
+    pair distances that change by >= 1.5 A (one of them <= 8 A): W62-W340 6.9->11.8; Y90-M321 6.8->3.8; W62-M330 7.0->9.8; Y99-Y176 9.1->7.0
+
+## adenylate kinase, 1AKE (Ap5A)  [W/Y: 7 side chains; farthest protein atom 26.3 A from Ap5A]
+  reach from the source with every hop <= T: T=5: 0 side chains, out to 0.0 A; T=6: 0 side chains, out to 0.0 A; T=7: 1 side chains, out to 6.4 A; T=8: 1 side chains, out to 6.4 A
+
+## adenylate kinase, 4AKE (apo); Ap5A placed by 55 site residues, rmsd 5.99 A  [W/Y: 7 side chains; farthest protein atom 26.2 A from Ap5A]
+  reach from the source with every hop <= T: T=5: 0 side chains, out to 0.0 A; T=6: 0 side chains, out to 0.0 A; T=7: 1 side chains, out to 6.8 A; T=8: 1 side chains, out to 6.8 A
+  1AKE -> 4AKE: 7 side chains in both; bottleneck changes >= 1 A: 2
+    Y171: 8.0 -> 6.8 A (distance from source 8.0 -> 6.8)
+    Y133: 6.4 -> 12.7 A (distance from source 6.4 -> 12.7)
+
+## adenylate kinase, 1AKE (Ap5A)  [W/Y/M/C: 14 side chains; farthest protein atom 26.3 A from Ap5A]
+  reach from the source with every hop <= T: T=5: 1 side chains, out to 3.7 A; T=6: 1 side chains, out to 3.7 A; T=7: 2 side chains, out to 6.4 A; T=8: 3 side chains, out to 7.8 A
+
+## adenylate kinase, 4AKE (apo); Ap5A placed by 55 site residues, rmsd 5.99 A  [W/Y/M/C: 14 side chains; farthest protein atom 26.2 A from Ap5A]
+  reach from the source with every hop <= T: T=5: 0 side chains, out to 0.0 A; T=6: 0 side chains, out to 0.0 A; T=7: 3 side chains, out to 7.3 A; T=8: 3 side chains, out to 7.3 A
+  1AKE -> 4AKE: 14 side chains in both; bottleneck changes >= 1 A: 5
+    M174: 9.4 -> 6.8 A (distance from source 9.4 -> 7.3)
+    Y171: 8.0 -> 6.8 A (distance from source 8.0 -> 6.8)
+    M34: 7.8 -> 6.6 A (distance from source 7.8 -> 6.6)
+    Y133: 6.4 -> 12.7 A (distance from source 6.4 -> 12.7)
+    M53: 3.7 -> 10.5 A (distance from source 3.7 -> 10.5)
+    pair distances that change by >= 1.5 A (one of them <= 8 A): Y171-M174 9.8->5.4
+
+# Hemoglobin: source = haem of chain A (alpha 1); targets = the other haems
+  2DN1 (oxy, R): Fe-Fe from A: B 34.8, C 34.1, D 25.5
+  2DN2 (deoxy, T): Fe-Fe from A: B 36.4, C 34.1, D 24.3
+
+## hemoglobin, 2DN1 (oxy, R)  [W/Y/haem: 21 side chains; farthest protein atom 46.5 A from haem A]
+  reach from the source with every hop <= T: T=5: 1 side chains, out to 3.9 A; T=6: 4 side chains, out to 16.3 A; T=7: 5 side chains, out to 16.3 A; T=8: 5 side chains, out to 16.3 A
+  shortest longest-hop to any side chain >= 20 A away: 10.0 A, to W15/D (31.6 A): haem A > (3.9) Y42 > (5.8) W37/D > (6.5) haem147/D > (10.0) W15/D
+  to haem147/B (24.0 A): longest hop 14.2 A: haem A > (14.2) Y35/B > (8.7) haem147/B
+  to haem142/C (26.1 A): longest hop 14.2 A: haem A > (14.2) Y35/B > (3.5) W37/B > (5.8) Y42/C > (3.9) haem142/C
+  to haem147/D (14.9 A): longest hop 6.5 A: haem A > (3.9) Y42 > (5.8) W37/D > (6.5) haem147/D
+
+## hemoglobin, 2DN1 (oxy, R)  [W/Y/M/C/haem: 33 side chains; farthest protein atom 46.5 A from haem A]
+  reach from the source with every hop <= T: T=5: 2 side chains, out to 4.1 A; T=6: 6 side chains, out to 16.3 A; T=7: 8 side chains, out to 26.1 A; T=8: 8 side chains, out to 26.1 A
+  shortest longest-hop to any side chain >= 20 A away: 6.8 A, to C112/D (26.1 A): haem A > (3.9) Y42 > (5.8) W37/D > (3.5) Y35/D > (6.8) C112/D
+  to haem147/B (24.0 A): longest hop 9.2 A: haem A > (4.1) M32 > (5.7) C104 > (9.2) C112/B > (6.8) Y35/B > (8.7) haem147/B
+  to haem142/C (26.1 A): longest hop 9.2 A: haem A > (3.9) Y42 > (5.8) W37/D > (3.5) Y35/D > (6.8) C112/D > (9.2) C104/C > (5.7) M32/C > (4.1) haem142/C
+  to haem147/D (14.9 A): longest hop 6.5 A: haem A > (3.9) Y42 > (5.8) W37/D > (6.5) haem147/D
+
+## hemoglobin, 2DN2 (deoxy, T)  [W/Y/haem: 21 side chains; farthest protein atom 45.5 A from haem A]
+  reach from the source with every hop <= T: T=5: 1 side chains, out to 4.0 A; T=6: 1 side chains, out to 4.0 A; T=7: 4 side chains, out to 16.4 A; T=8: 4 side chains, out to 16.4 A
+  shortest longest-hop to any side chain >= 20 A away: 9.2 A, to Y130/D (30.0 A): haem A > (4.0) Y42 > (6.0) W37/D > (8.2) haem147/D > (9.2) W15/D > (3.5) Y130/D
+  to haem147/B (25.8 A): longest hop 14.5 A: haem A > (14.5) Y35/B > (9.3) haem147/B
+  to haem142/C (25.7 A): longest hop 14.5 A: haem A > (14.5) Y35/B > (3.6) W37/B > (6.0) Y42/C > (4.0) haem142/C
+  to haem147/D (15.6 A): longest hop 8.2 A: haem A > (4.0) Y42 > (6.0) W37/D > (8.2) haem147/D
+
+## hemoglobin, 2DN2 (deoxy, T)  [W/Y/M/C/haem: 33 side chains; farthest protein atom 45.5 A from haem A]
+  reach from the source with every hop <= T: T=5: 2 side chains, out to 4.0 A; T=6: 3 side chains, out to 9.8 A; T=7: 7 side chains, out to 25.6 A; T=8: 7 side chains, out to 25.6 A
+  shortest longest-hop to any side chain >= 20 A away: 6.9 A, to C112/D (25.6 A): haem A > (4.0) Y42 > (6.0) W37/D > (3.6) Y35/D > (6.9) C112/D
+  to haem147/B (25.8 A): longest hop 9.1 A: haem A > (4.0) Y42 > (6.0) W37/D > (3.6) Y35/D > (6.9) C112/D > (9.1) C104/C > (5.7) M32/C > (7.2) Y42/C > (6.0) W37/B > (8.3) haem147/B
+  to haem142/C (25.7 A): longest hop 9.1 A: haem A > (4.0) Y42 > (6.0) W37/D > (3.6) Y35/D > (6.9) C112/D > (9.1) C104/C > (5.7) M32/C > (3.9) haem142/C
+  to haem147/D (15.6 A): longest hop 8.2 A: haem A > (4.0) Y42 > (6.0) W37/D > (8.2) haem147/D
+  R -> T: 21 side chains in both; bottleneck changes >= 1 A: 4
+    W14: 12.9 -> 8.6 A (distance from source 12.9 -> 8.6)
+    Y24: 12.9 -> 8.6 A (distance from source 13.7 -> 13.5)
+    Y145/D: 9.4 -> 8.2 A (distance from source 12.6 -> 12.3)
+    haem147/D: 6.5 -> 8.2 A (distance from source 14.9 -> 15.6)
+    pair distances that change by >= 1.5 A (one of them <= 8 A): W14/C-Y24/C 9.9->6.2; W14-Y24 9.9->6.5; W37/B-haem147/B 6.5->8.3; W37/D-haem147/D 6.5->8.2; Y145/B-haem147/B 9.4->7.7; Y145/D-haem147/D 9.4->7.7
+  R -> T: 33 side chains in both; bottleneck changes >= 1 A: 7
+    W14: 12.3 -> 8.6 A (distance from source 12.9 -> 8.6)
+    Y24: 12.3 -> 8.6 A (distance from source 13.7 -> 13.5)
+    W14/C: 12.3 -> 9.1 A (distance from source 35.3 -> 32.3)
+    Y24/C: 12.3 -> 9.1 A (distance from source 36.7 -> 36.5)
+    C93/D: 9.4 -> 8.2 A (distance from source 17.1 -> 13.8)
+    Y145/D: 9.4 -> 8.2 A (distance from source 12.6 -> 12.3)
+    haem147/D: 6.5 -> 8.2 A (distance from source 14.9 -> 15.6)
+    pair distances that change by >= 1.5 A (one of them <= 8 A): W14/C-Y24/C 9.9->6.2; W14-Y24 9.9->6.5; W37/B-haem147/B 6.5->8.3; W37/D-haem147/D 6.5->8.2; Y145/B-haem147/B 9.4->7.7; Y145/D-haem147/D 9.4->7.7
+
+# Known hopping chains (positive controls)
+
+## E. coli DNA photolyase 1DNP: from the FAD  [W/Y: 29 side chains; farthest protein atom 40.4 A from FAD]
+  reach from the source with every hop <= T: T=5: 9 side chains, out to 10.6 A; T=6: 14 side chains, out to 18.3 A; T=7: 14 side chains, out to 18.3 A; T=8: 14 side chains, out to 18.3 A
+  shortest longest-hop to any side chain >= 20 A away: 8.8 A, to W434 (25.7 A): FAD > (3.7) W382 > (3.7) W316 > (8.8) Y323 > (6.2) Y446 > (4.0) W434
+  random side chains (same number, 200 draws): median 9.9 A (5-95 %: 7.9-11.9); draws as good or better: 19 %
+  to W382 (3.7 A): longest hop 3.7 A: FAD > (3.7) W382
+  to W359 (9.0 A): longest hop 5.2 A: FAD > (3.7) W382 > (5.2) W359
+  to W306 (13.4 A): longest hop 5.2 A: FAD > (3.7) W382 > (5.2) W359 > (3.9) W306
+
+## E. coli DNA photolyase 1DNP: from the FAD  [W/Y/M/C: 44 side chains; farthest protein atom 40.4 A from FAD]
+  reach from the source with every hop <= T: T=5: 14 side chains, out to 10.6 A; T=6: 20 side chains, out to 18.3 A; T=7: 20 side chains, out to 18.3 A; T=8: 20 side chains, out to 18.3 A
+  shortest longest-hop to any side chain >= 20 A away: 8.2 A, to Y101 (21.0 A): FAD > (5.1) M367 > (8.2) M46 > (6.8) Y34 > (6.2) W6 > (4.6) Y101
+  to W382 (3.7 A): longest hop 3.7 A: FAD > (3.7) W382
+  to W359 (9.0 A): longest hop 5.2 A: FAD > (3.7) W382 > (5.2) W359
+  to W306 (13.4 A): longest hop 5.2 A: FAD > (3.7) W382 > (5.2) W359 > (3.9) W306
+
+## E. coli ribonucleotide reductase 6W4X: from Y122 (trifluoro-Tyr) of beta chain C  [W/Y: 138 side chains; farthest protein atom 85.2 A from Y122/C]
+  reach from the source with every hop <= T: T=5: 0 side chains, out to 0.0 A; T=6: 0 side chains, out to 0.0 A; T=7: 0 side chains, out to 0.0 A; T=8: 1 side chains, out to 7.9 A
+  shortest longest-hop to any side chain >= 20 A away: 8.9 A, to Y731/B (27.0 A): Y122/C > (7.9) W48/C > (8.9) Y356/C > (7.7) Y731/B
+  random side chains (same number, 200 draws): median 9.3 A (5-95 %: 7.5-11.9); draws as good or better: 36 %
+  to W48/C (7.9 A): longest hop 7.9 A: Y122/C > (7.9) W48/C
+  to Y356/C (19.1 A): longest hop 8.9 A: Y122/C > (7.9) W48/C > (8.9) Y356/C
+  to Y731 (36.6 A): longest hop 20.1 A: Y122/C > (8.3) Y79/C > (4.5) W286/C > (3.7) Y289/C > (12.7) Y62/C > (20.1) Y335 > (7.9) Y413 > (3.2) Y731
+  to Y730 (39.9 A): longest hop 20.1 A: Y122/C > (8.3) Y79/C > (4.5) W286/C > (3.7) Y289/C > (12.7) Y62/C > (20.1) Y335 > (7.9) Y413 > (4.1) Y730
+  to C439 (43.4 A): longest hop 20.1 A: Y122/C > (8.3) Y79/C > (4.5) W286/C > (3.7) Y289/C > (12.7) Y62/C > (20.1) Y335 > (15.5) C439
+  to Y731/B (27.0 A): longest hop 8.9 A: Y122/C > (7.9) W48/C > (8.9) Y356/C > (7.7) Y731/B
+  to Y730/B (30.0 A): longest hop 8.9 A: Y122/C > (7.9) W48/C > (8.9) Y356/C > (7.7) Y731/B > (3.5) Y730/B
+  to C439/B (31.8 A): longest hop 8.9 A: Y122/C > (7.9) W48/C > (8.9) Y356/C > (7.7) Y731/B > (5.9) C439/B
+
+## E. coli ribonucleotide reductase 6W4X: from Y122 (trifluoro-Tyr) of beta chain C  [W/Y/M/C: 210 side chains; farthest protein atom 85.2 A from Y122/C]
+  reach from the source with every hop <= T: T=5: 0 side chains, out to 0.0 A; T=6: 0 side chains, out to 0.0 A; T=7: 0 side chains, out to 0.0 A; T=8: 1 side chains, out to 7.9 A
+  shortest longest-hop to any side chain >= 20 A away: 8.9 A, to W670/B (25.3 A): Y122/C > (7.9) W48/C > (8.9) Y356/C > (7.7) Y731/B > (8.8) Y678/B > (5.5) M672/B > (7.3) W670/B
+  to W48/C (7.9 A): longest hop 7.9 A: Y122/C > (7.9) W48/C
+  to Y356/C (19.1 A): longest hop 8.9 A: Y122/C > (7.9) W48/C > (8.9) Y356/C
+  to Y731 (36.6 A): longest hop 12.2 A: Y122/C > (7.9) W48/C > (8.9) Y356/C > (7.7) Y731/B > (8.8) Y678/B > (4.2) Y531/B > (7.9) Y523/B > (9.8) Y597/B > (4.8) W599/B > (6.5) Y573/B > (9.3) C565/B > (6.2) W567/B > (9.7) M508/B > (3.5) Y498/B > (5.9) Y247/B > (9.6) C292/B > (12.2) C230 > (7.6) Y282 > (4.0) Y335 > (7.9) Y413 > (3.2) Y731
+  to Y730 (39.9 A): longest hop 12.2 A: Y122/C > (7.9) W48/C > (8.9) Y356/C > (7.7) Y731/B > (8.8) Y678/B > (4.2) Y531/B > (7.9) Y523/B > (9.8) Y597/B > (4.8) W599/B > (6.5) Y573/B > (9.3) C565/B > (6.2) W567/B > (9.7) M508/B > (3.5) Y498/B > (5.9) Y247/B > (9.6) C292/B > (12.2) C230 > (7.6) Y282 > (4.0) Y335 > (7.9) Y413 > (4.1) Y730
+  to C439 (43.4 A): longest hop 12.2 A: Y122/C > (7.9) W48/C > (8.9) Y356/C > (7.7) Y731/B > (8.8) Y678/B > (4.2) Y531/B > (7.9) Y523/B > (9.8) Y597/B > (4.8) W599/B > (6.5) Y573/B > (9.3) C565/B > (6.2) W567/B > (9.7) M508/B > (3.5) Y498/B > (5.9) Y247/B > (9.6) C292/B > (12.2) C230 > (7.6) Y282 > (4.0) Y335 > (7.9) Y413 > (8.4) C439
+  to Y731/B (27.0 A): longest hop 8.9 A: Y122/C > (7.9) W48/C > (8.9) Y356/C > (7.7) Y731/B
+  to Y730/B (30.0 A): longest hop 8.9 A: Y122/C > (7.9) W48/C > (8.9) Y356/C > (7.7) Y731/B > (3.5) Y730/B
+  to C439/B (31.8 A): longest hop 8.9 A: Y122/C > (7.9) W48/C > (8.9) Y356/C > (7.7) Y731/B > (5.9) C439/B
