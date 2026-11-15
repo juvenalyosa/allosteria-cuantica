@@ -35,11 +35,35 @@ sobre la matriz de Fock del par).
 - Control: el modelo **no** reproduce la dirección conocida de la tríada de la fotoliasa (energías casi planas; faltan el
   FAD y la solvatación). Diferencias de unas décimas de eV no son fiables; el paso de 1,2 eV sí lo es.
 
-### 3. Alcance del efecto electrónico de la glicina, geometría congelada (en curso)
+### 3. Alcance del efecto electrónico de la glicina, geometría congelada (`results/test1_cpu/`)
 
-A = proteína + glicina, B = proteína sola, C = proteína + la glicina como cargas puntuales, D = glicina sola. A − B,
-C − B y A − C contra la distancia, con el ruido de dos corridas iguales, CPU, `CUTOFF=15` y `25`, agua implícita y SCF
-convencional. Cuaderno: `notebooks/allo_t1_colab.ipynb` (Colab A100; *Archivo → Subir cuaderno*).
+A = proteína + glicina, B = proteína sola, C = proteína + la glicina como cargas puntuales (sus cargas ESP aislada),
+C2 = lo mismo con las cargas que la glicina tiene dentro de la proteína (de A). PM7, MOZYME, 4 604 átomos de proteína,
+vacío, CPU. Ruido: las mismas corridas con los átomos en orden inverso.
+
+Cambio de las cargas atómicas de la proteína (e), mediana por distancia a la glicina:
+
+| Distancia | A − B | C − B | C2 − B | A − C2 | ruido de A − C |
+|---|---|---|---|---|---|
+| 0–4 Å | 1,5·10⁻² | 1,4·10⁻² | 1,6·10⁻² | 3,3·10⁻³ | 2·10⁻⁷ |
+| 8–10 Å | 1,2·10⁻³ | 6,4·10⁻⁴ | 7,7·10⁻⁴ | 5,5·10⁻⁴ | 2·10⁻⁷ |
+| 15–20 Å | 2,3·10⁻⁴ | 1,3·10⁻⁴ | 1,6·10⁻⁴ | 9,2·10⁻⁵ | 2·10⁻⁷ |
+| 25–30 Å | 6,5·10⁻⁵ | 3,9·10⁻⁵ | 4,5·10⁻⁵ | 2,7·10⁻⁵ | 1·10⁻⁷ |
+
+- El efecto llega a toda la proteína (34 Å) y está muy por encima del ruido. Decae como una potencia de la distancia
+  (≈ r^−2,6 entre 9 y 28 Å), como un campo electrostático, no como un efecto electrónico de corto alcance.
+- Dentro de la proteína la glicina está más polarizada (dipolo 14,9 D contra 12,4 D aislada) y le pasa 0,008 e a la
+  proteína.
+- Con las cargas que la glicina tiene en la proteína (C2), la respuesta lejana sigue siendo ~1,5 veces menor que con la
+  glicina cuántica: A − C2 es ~0,6 veces C2 − B en cada intervalo más allá de 10 Å (misma forma, otra amplitud). El dipolo
+  de la glicina más la capa cercana (≤ 12 Å) difiere solo un 6–19 % entre A y C2, así que esto no está explicado. Puede
+  depender de cómo MOZYME trata el largo alcance; el cuaderno lo mira con `CUTOFF=25` y agua implícita.
+- Los residuos del camino aromático no se afectan más que otros a la misma distancia (percentiles 3–87 entre los residuos
+  a ±2 Å, en A − B, A − C y A − C2).
+
+Siguiente: `notebooks/allo_t1_colab.ipynb` (Colab A100; *Archivo → Subir cuaderno*) repite la base en GPU y añade
+`CUTOFF=25`, agua implícita, `CUTOFF=15` y SCF convencional. Pendiente también: si un relevo dinámico (con movimiento
+de átomos) lleva la señal; esta prueba es con geometría congelada.
 
 ## Reproducir
 
@@ -51,6 +75,10 @@ python scripts/hbond_paths.py pdb results/hbonds.txt
 python scripts/prep_structures.py pdb structures                  # OpenMM + PDBFixer
 python scripts/path_qm.py /ruta/a/mopac structures work/t2 results/test2.txt
 python scripts/t1_tools.py decks structures/1PB7_atoms.csv work/t1 2
+python scripts/run_t1.py /ruta/a/mopac work/t1 D && python scripts/t1_tools.py mmcharges work/t1
+python scripts/run_t1.py /ruta/a/mopac work/t1 A_cpu,B_cpu,C_cpu,A_rev,B_rev,C_rev 6
+python scripts/t1_tools.py c2 work/t1 cpu && python scripts/run_t1.py /ruta/a/mopac work/t1 C2_cpu
+python scripts/t1_tools.py analyse work/t1 results/test1_cpu
 python scripts/make_allo_t1_nb.py notebooks/allo_t1_colab.ipynb 323b6076 scripts structures/1PB7_atoms.csv
 ```
 

@@ -27,26 +27,31 @@ blob = base64.b64encode(gzip.compress(atoms_csv.read_bytes())).decode()
 md("""
 # Prueba 1: ¿hasta dónde llega el efecto electrónico de la glicina en GluN1?
 
-Geometría congelada (1PB7 con hidrógenos, preparada en local). PM7, MOZYME, `1SCF GRADIENTS`.
+Geometría congelada (1PB7 con hidrógenos, preparada en local). PM7, MOZYME, `1SCF GRADIENTS`,
+`SCFCRT=2.D-6 RELTHR=0.01` (con el umbral normal de MOZYME la densidad no baja de ~1,5·10⁻⁵).
 
 | Sistema | Contenido |
 |---|---|
 | A | proteína + glicina |
 | B | proteína sola |
 | C | proteína + la glicina como cargas puntuales (sus cargas ESP de PM7, `MM_CHARGES`) |
+| C2 | proteína + la glicina como las cargas puntuales que tiene dentro de la proteína (de A) |
 | D | glicina sola (cargas ESP) |
 
 A − B es todo el efecto de la glicina sobre las cargas y fuerzas de la proteína; C − B, lo que da un campo clásico; A − C,
-lo que la glicina cuántica añade. Variantes: dos corridas iguales (ruido), CPU (`MOPAC_NOGPU=1`), `CUTOFF=15` y `25`
-(MOZYME trata las interacciones más allá de ~10 Å como cargas y dipolos), agua implícita (`EPS=78.4`) y SCF convencional
-sin orbitales localizados.
+lo que la glicina cuántica añade; A − C2, lo mismo sin su polarización por la proteína. En CPU (local), A − C2 lejos de la
+glicina salió ~0,6 veces C2 − B a toda distancia; estas corridas miran si eso depende de cómo MOZYME trata el largo
+alcance (`CUTOFF=25`; con el valor por defecto, más allá de ~10 Å usa cargas y dipolos) o del vacío (`EPS=78.4`). Ruido:
+dos corridas iguales (`r2`, lo que no repite la GPU) y los átomos en orden inverso (`rev`). También `CUTOFF=15` y el SCF
+convencional sin orbitales localizados.
 
-| Bloque | Tiempo (A100, estimado) |
+| Bloque | Tiempo (A100) |
 |---|---|
 | Compilar MOPAC | ~10 min |
-| GPU: base, repeticiones, cutoffs, agua | ~10–20 min |
-| CPU: A, B, C en paralelo | ~15–30 min (corre a la vez que la GPU) |
-| SCF convencional, 4 614 átomos | hasta 45 min por corrida (límite) |
+| GPU: hasta 20 corridas de MOZYME, ~80 iteraciones cada una | sin medir; en CPU cada una tarda 35–95 min |
+| SCF convencional, 4 614 átomos | hasta `CONV_TIMEOUT` por corrida |
+
+Las corridas van en orden de importancia; si el tiempo se acaba, lo terminado ya sirve.
 
 **Antes de empezar:** *Entorno de ejecución → Cambiar tipo de entorno → GPU A100*, y luego *Ejecutar todo*. Los resultados
 se guardan en Google Drive (`MyDrive/mopac_paper_bench/RESULTS_NAME`); si la sesión se corta, vuelva a ejecutar todo y lo
@@ -56,7 +61,7 @@ terminado se salta. La última celda descarga un zip.
 md("## 1. Configuración")
 code(f"""
 COMMIT = '{commit}'
-RESULTS_NAME = 'allo_t1_a100'
+RESULTS_NAME = 'allo_t1b_a100'
 USE_DRIVE = True
 REQUIRE_GPU = 'A100'           # None: aceptar cualquier GPU
 CONV_TIMEOUT = 2700            # s por corrida del SCF convencional
@@ -132,18 +137,22 @@ run(f'{{sys.executable}} /content/run_t1.py {{MOPAC}} {{WD}} D')
 run(f'{{sys.executable}} /content/t1_tools.py mmcharges {{WD}}')
 """)
 md("""
-## 5. Corridas
+## 5. Corridas en GPU
 
-Las tres corridas en CPU arrancan en segundo plano (una por núcleo) y las de GPU van una tras otra.
+Una tras otra, en orden de importancia. C2 sale de las cargas de A de la misma variante, así que va después. El análisis
+se rehace después de cada bloque.
 """)
 code("""
-cpu_log = OUT / 'cpu_jobs.log'
-cpu = subprocess.Popen(f'{sys.executable} /content/run_t1.py {MOPAC} {WD} A_cpu,B_cpu,C_cpu 3 > {cpu_log} 2>&1',
-                       shell=True, executable='/bin/bash')
-gpu_jobs = ['A_vac', 'B_vac', 'C_vac', 'A_r2', 'B_r2', 'C_r2', 'A_c15', 'B_c15', 'C_c15', 'A_c25', 'B_c25', 'C_c25',
-            'A_eps', 'B_eps', 'C_eps']
-run(f'{sys.executable} /content/run_t1.py {MOPAC} {WD} {",".join(gpu_jobs)} 1')
-run(f'{sys.executable} /content/t1_tools.py analyse {WD} {OUT / "analysis"}')
+blocks = [('vac', ['A_vac', 'B_vac', 'C_vac', 'C2_vac']), ('c25', ['A_c25', 'B_c25', 'C_c25', 'C2_c25']),
+          ('eps', ['A_eps', 'B_eps', 'C_eps', 'C2_eps']), ('r2', ['A_r2', 'B_r2', 'C_r2']),
+          ('rev', ['A_rev', 'B_rev', 'C_rev']), ('c15', ['A_c15', 'B_c15', 'C_c15'])]
+for v, jobs in blocks:
+    first = [j for j in jobs if not j.startswith('C2_')]
+    run(f'{sys.executable} /content/run_t1.py {MOPAC} {WD} {",".join(first)} 1')
+    if len(first) < len(jobs) and (WD / f'A_{v}' / 'job.aux').exists():
+        run(f'{sys.executable} /content/t1_tools.py c2 {WD} {v}')
+        run(f'{sys.executable} /content/run_t1.py {MOPAC} {WD} C2_{v} 1')
+    run(f'{sys.executable} /content/t1_tools.py analyse {WD} {OUT / "analysis"}', check=False)
 """)
 md("""
 ## 6. SCF convencional (sin orbitales localizados)
@@ -153,9 +162,6 @@ resto de los resultados vale igual.
 """)
 code("""
 run(f'{sys.executable} /content/run_t1.py {MOPAC} {WD} A_conv,B_conv,C_conv 1 {CONV_TIMEOUT}', check=False)
-print('esperando las corridas en CPU...', flush=True)
-cpu.wait()
-run(f'cat {cpu_log}', check=False)
 run(f'{sys.executable} /content/t1_tools.py analyse {WD} {OUT / "analysis"}')
 """)
 md("## 7. Figura y descarga")
