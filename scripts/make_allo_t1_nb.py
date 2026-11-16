@@ -45,25 +45,28 @@ alcance (`CUTOFF=25`; con el valor por defecto, más allá de ~10 Å usa cargas 
 dos corridas iguales (`r2`, lo que no repite la GPU) y los átomos en orden inverso (`rev`). También `CUTOFF=15` y el SCF
 convencional sin orbitales localizados.
 
-| Bloque | Tiempo (A100) |
+| Bloque | Tiempo |
 |---|---|
-| Compilar MOPAC | ~10 min |
+| Compilar MOPAC | ~10 min con 12 núcleos (A100); más con los 2 de una sesión T4 |
 | GPU: hasta 20 corridas de MOZYME, ~80 iteraciones cada una | sin medir; en CPU cada una tarda 35–95 min |
 | SCF convencional, 4 614 átomos | hasta `CONV_TIMEOUT` por corrida |
 
 Las corridas van en orden de importancia; si el tiempo se acaba, lo terminado ya sirve.
 
-**Antes de empezar:** *Entorno de ejecución → Cambiar tipo de entorno → GPU A100*, y luego *Ejecutar todo*. Los resultados
-se guardan en Google Drive (`MyDrive/mopac_paper_bench/RESULTS_NAME`); si la sesión se corta, vuelva a ejecutar todo y lo
-terminado se salta. La última celda descarga un zip.
+**GPU.** Sirve una A100 o una T4. En la T4 (16 GB, doble precisión mucho más lenta que la A100) este código no se ha
+probado: mire cuánto tarda la primera corrida (`A_vac`, línea `"seconds"`) antes de dejarlo correr horas.
+
+**Antes de empezar:** *Entorno de ejecución → Cambiar tipo de entorno → GPU*, y luego *Ejecutar todo*. Los resultados
+se guardan en Google Drive (`MyDrive/mopac_paper_bench/RESULTS_NAME_<gpu>`, p. ej. `allo_t1b_t4`); si la sesión se
+corta, vuelva a ejecutar todo y lo terminado se salta. La última celda descarga un zip.
 """)
 
 md("## 1. Configuración")
 code(f"""
 COMMIT = '{commit}'
-RESULTS_NAME = 'allo_t1b_a100'
+RESULTS_NAME = 'allo_t1b'      # la carpeta lleva además el nombre de la GPU: allo_t1b_t4, allo_t1b_a100
 USE_DRIVE = True
-REQUIRE_GPU = 'A100'           # None: aceptar cualquier GPU
+REQUIRE_GPU = None             # 'A100' o 'T4': parar si la sesión tiene otra GPU
 CONV_TIMEOUT = 2700            # s por corrida del SCF convencional
 """)
 md("## 2. GPU y carpeta de resultados")
@@ -90,6 +93,9 @@ NCPU = os.cpu_count()
 CC = gpu.split(',')[-1].strip().replace('.', '')
 if REQUIRE_GPU and REQUIRE_GPU not in gpu:
     raise RuntimeError(f'Esta sesión tiene {gpu}, no una {REQUIRE_GPU}.')
+GPU_TAG = [w for w in gpu.split(',')[0].split() if w.lower() not in ('nvidia', 'tesla')][0].split('-')[0].lower()
+if not RESULTS_NAME.endswith(f'_{GPU_TAG}'):
+    RESULTS_NAME = f'{RESULTS_NAME}_{GPU_TAG}'
 if USE_DRIVE:
     from google.colab import drive
     drive.mount('/content/drive')
@@ -179,7 +185,7 @@ except Exception as e:
     print('descárguelo a mano:', e)
 """)
 
-nb = {"cells": cells, "metadata": {"accelerator": "GPU", "colab": {"gpuType": "A100", "provenance": []},
+nb = {"cells": cells, "metadata": {"accelerator": "GPU", "colab": {"gpuType": "T4", "provenance": []},
                                    "kernelspec": {"display_name": "Python 3", "name": "python3"},
                                    "language_info": {"name": "python"}}, "nbformat": 4, "nbformat_minor": 0}
 Path(out).write_text(json.dumps(nb, indent=1, ensure_ascii=False))

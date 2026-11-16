@@ -61,7 +61,9 @@ Cambio de las cargas atómicas de la proteína (e), mediana por distancia a la g
 - Los residuos del camino aromático no se afectan más que otros a la misma distancia (percentiles 3–87 entre los residuos
   a ±2 Å, en A − B, A − C y A − C2).
 
-Siguiente: `notebooks/allo_t1_colab.ipynb` (Colab A100; *Archivo → Subir cuaderno*) repite la base en GPU y añade
+Siguiente: `notebooks/allo_t1_colab.ipynb` (Colab con A100 o T4;
+[abrir en Colab](https://colab.research.google.com/github/juvenalyosa/allosteria-cuantica/blob/main/notebooks/allo_t1_colab.ipynb))
+repite la base en GPU y añade
 `CUTOFF=25`, agua implícita, `CUTOFF=15` y SCF convencional. Pendiente también: si un relevo dinámico (con movimiento
 de átomos) lleva la señal; esta prueba es con geometría congelada.
 
