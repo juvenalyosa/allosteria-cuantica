@@ -61,7 +61,9 @@ Cambio de las cargas atómicas de la proteína (e), mediana por distancia a la g
 - Los residuos del camino aromático no se afectan más que otros a la misma distancia (percentiles 3–87 entre los residuos
   a ±2 Å, en A − B, A − C y A − C2).
 
-Siguiente: `notebooks/allo_t1_colab.ipynb` (Colab con A100 o T4;
+Siguiente: `notebooks/allo_t1_colab_a100.ipynb` (Colab con A100, se detiene con otra GPU;
+[abrir en Colab](https://colab.research.google.com/github/juvenalyosa/allosteria-cuantica/blob/main/notebooks/allo_t1_colab_a100.ipynb))
+o `notebooks/allo_t1_colab.ipynb` (cualquier GPU;
 [abrir en Colab](https://colab.research.google.com/github/juvenalyosa/allosteria-cuantica/blob/main/notebooks/allo_t1_colab.ipynb))
 repite la base en GPU y añade
 `CUTOFF=25`, agua implícita, `CUTOFF=15` y SCF convencional. Pendiente también: si un relevo dinámico (con movimiento
@@ -82,6 +84,7 @@ python scripts/run_t1.py /ruta/a/mopac work/t1 A_cpu,B_cpu,C_cpu,A_rev,B_rev,C_r
 python scripts/t1_tools.py c2 work/t1 cpu && python scripts/run_t1.py /ruta/a/mopac work/t1 C2_cpu
 python scripts/t1_tools.py analyse work/t1 results/test1_cpu
 python scripts/make_allo_t1_nb.py notebooks/allo_t1_colab.ipynb 323b6076 scripts structures/1PB7_atoms.csv
+python scripts/make_allo_t1_nb.py notebooks/allo_t1_colab_a100.ipynb 323b6076 scripts structures/1PB7_atoms.csv A100
 ```
 
 ## Referencias

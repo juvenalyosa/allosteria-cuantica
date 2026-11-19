@@ -1,5 +1,6 @@
 """Writes the Colab notebook of test 1 (range of the glycine's electronic effect on GluN1, frozen geometry).
-    python make_allo_t1_nb.py OUT.ipynb COMMIT SCRIPTS_DIR ATOMS_CSV"""
+    python make_allo_t1_nb.py OUT.ipynb COMMIT SCRIPTS_DIR ATOMS_CSV [GPU]
+GPU (e.g. A100): the notebook asks Colab for that GPU and stops if the session has another; without it, any GPU."""
 import base64
 import gzip
 import json
@@ -7,6 +8,7 @@ import sys
 from pathlib import Path
 
 out, commit, sdir, atoms_csv = sys.argv[1], sys.argv[2], Path(sys.argv[3]), Path(sys.argv[4])
+req = sys.argv[5] if len(sys.argv) > 5 else None
 cells = []
 
 
@@ -22,9 +24,24 @@ def embed(path, dest):
     return f"Path('{dest}').write_text({path.read_text()!r})\n"
 
 
-blob = base64.b64encode(gzip.compress(atoms_csv.read_bytes())).decode()
+blob = base64.b64encode(gzip.compress(atoms_csv.read_bytes(), mtime=0)).decode()
+if req:
+    build_time = f"~10 min con los 12 núcleos de una sesión {req}"
+    gpu_note = f"""**GPU.** Este cuaderno pide una {req}: si Colab asigna otra (ha pasado que dé una L4), se detiene en la
+celda 2 sin compilar nada. Para otra GPU use `allo_t1_colab.ipynb` o ponga `REQUIRE_GPU = None`. Mire cuánto tarda la
+primera corrida (`A_vac`, línea `"seconds"`): este sistema no se ha medido en GPU."""
+    start = f"""**Antes de empezar:** *Entorno de ejecución → Cambiar tipo de entorno → GPU {req}*, y luego *Ejecutar todo*. Los
+resultados se guardan en Google Drive (`MyDrive/mopac_paper_bench/allo_t1b_{req.lower()}`); si la sesión se corta, vuelva a
+ejecutar todo y lo terminado se salta. La última celda descarga un zip."""
+else:
+    build_time = "~10 min con 12 núcleos (A100); más con los 2 de una sesión T4"
+    gpu_note = """**GPU.** Sirve una A100 o una T4. En la T4 (16 GB, doble precisión mucho más lenta que la A100) este código no se ha
+probado: mire cuánto tarda la primera corrida (`A_vac`, línea `"seconds"`) antes de dejarlo correr horas."""
+    start = """**Antes de empezar:** *Entorno de ejecución → Cambiar tipo de entorno → GPU*, y luego *Ejecutar todo*. Los resultados
+se guardan en Google Drive (`MyDrive/mopac_paper_bench/RESULTS_NAME_<gpu>`, p. ej. `allo_t1b_t4`); si la sesión se
+corta, vuelva a ejecutar todo y lo terminado se salta. La última celda descarga un zip."""
 
-md("""
+md(f"""
 # Prueba 1: ¿hasta dónde llega el efecto electrónico de la glicina en GluN1?
 
 Geometría congelada (1PB7 con hidrógenos, preparada en local). PM7, MOZYME, `1SCF GRADIENTS`,
@@ -47,18 +64,15 @@ convencional sin orbitales localizados.
 
 | Bloque | Tiempo |
 |---|---|
-| Compilar MOPAC | ~10 min con 12 núcleos (A100); más con los 2 de una sesión T4 |
+| Compilar MOPAC | {build_time} |
 | GPU: hasta 20 corridas de MOZYME, ~80 iteraciones cada una | sin medir; en CPU cada una tarda 35–95 min |
 | SCF convencional, 4 614 átomos | hasta `CONV_TIMEOUT` por corrida |
 
 Las corridas van en orden de importancia; si el tiempo se acaba, lo terminado ya sirve.
 
-**GPU.** Sirve una A100 o una T4. En la T4 (16 GB, doble precisión mucho más lenta que la A100) este código no se ha
-probado: mire cuánto tarda la primera corrida (`A_vac`, línea `"seconds"`) antes de dejarlo correr horas.
+{gpu_note}
 
-**Antes de empezar:** *Entorno de ejecución → Cambiar tipo de entorno → GPU*, y luego *Ejecutar todo*. Los resultados
-se guardan en Google Drive (`MyDrive/mopac_paper_bench/RESULTS_NAME_<gpu>`, p. ej. `allo_t1b_t4`); si la sesión se
-corta, vuelva a ejecutar todo y lo terminado se salta. La última celda descarga un zip.
+{start}
 """)
 
 md("## 1. Configuración")
@@ -66,7 +80,7 @@ code(f"""
 COMMIT = '{commit}'
 RESULTS_NAME = 'allo_t1b'      # la carpeta lleva además el nombre de la GPU: allo_t1b_t4, allo_t1b_a100
 USE_DRIVE = True
-REQUIRE_GPU = None             # 'A100' o 'T4': parar si la sesión tiene otra GPU
+REQUIRE_GPU = {req!r:<16} # 'A100' o 'T4': parar si la sesión tiene otra GPU; None: cualquiera
 CONV_TIMEOUT = 2700            # s por corrida del SCF convencional
 """)
 md("## 2. GPU y carpeta de resultados")
@@ -185,7 +199,7 @@ except Exception as e:
     print('descárguelo a mano:', e)
 """)
 
-nb = {"cells": cells, "metadata": {"accelerator": "GPU", "colab": {"gpuType": "T4", "provenance": []},
+nb = {"cells": cells, "metadata": {"accelerator": "GPU", "colab": {"gpuType": req or "T4", "provenance": []},
                                    "kernelspec": {"display_name": "Python 3", "name": "python3"},
                                    "language_info": {"name": "python"}}, "nbformat": 4, "nbformat_minor": 0}
 Path(out).write_text(json.dumps(nb, indent=1, ensure_ascii=False))
