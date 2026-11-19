@@ -159,8 +159,9 @@ run(f'{{sys.executable}} /content/t1_tools.py mmcharges {{WD}}')
 md("""
 ## 5. Corridas en GPU
 
-Una tras otra, en orden de importancia. C2 sale de las cargas de A de la misma variante, así que va después. El análisis
-se rehace después de cada bloque.
+Una tras otra, en orden de importancia. C2 sale de las cargas de A de la misma variante, así que va después y solo si A
+terminó con calor de formación. Si una corrida falla, su línea muestra los mensajes de MOPAC (`"errors"`) y el
+cuaderno sigue con el bloque siguiente. El análisis se rehace después de cada bloque.
 """)
 code("""
 blocks = [('vac', ['A_vac', 'B_vac', 'C_vac', 'C2_vac']), ('c25', ['A_c25', 'B_c25', 'C_c25', 'C2_c25']),
@@ -168,10 +169,11 @@ blocks = [('vac', ['A_vac', 'B_vac', 'C_vac', 'C2_vac']), ('c25', ['A_c25', 'B_c
           ('rev', ['A_rev', 'B_rev', 'C_rev']), ('c15', ['A_c15', 'B_c15', 'C_c15'])]
 for v, jobs in blocks:
     first = [j for j in jobs if not j.startswith('C2_')]
-    run(f'{sys.executable} /content/run_t1.py {MOPAC} {WD} {",".join(first)} 1')
-    if len(first) < len(jobs) and (WD / f'A_{v}' / 'job.aux').exists():
-        run(f'{sys.executable} /content/t1_tools.py c2 {WD} {v}')
-        run(f'{sys.executable} /content/run_t1.py {MOPAC} {WD} C2_{v} 1')
+    run(f'{sys.executable} /content/run_t1.py {MOPAC} {WD} {",".join(first)} 1', check=False)
+    st = WD / f'A_{v}' / 'status.json'
+    if len(first) < len(jobs) and st.exists() and json.loads(st.read_text()).get('heat'):
+        if run(f'{sys.executable} /content/t1_tools.py c2 {WD} {v}', check=False) == 0:
+            run(f'{sys.executable} /content/run_t1.py {MOPAC} {WD} C2_{v} 1', check=False)
     run(f'{sys.executable} /content/t1_tools.py analyse {WD} {OUT / "analysis"}', check=False)
 """)
 md("""

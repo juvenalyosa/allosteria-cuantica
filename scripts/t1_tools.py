@@ -101,7 +101,10 @@ def write_mmcharges(wd):
 def write_c2(wd, v):
     """C2_v: deck of C_v, the glycine's charges taken from A_v (its last atoms)."""
     lig = np.array(json.loads((wd / "meta.json").read_text())["lig"])
-    q = aux_block((wd / f"A_{v}" / "job.aux").read_text(errors="ignore"), "ATOM_CHARGES")[-len(lig):]
+    q = aux_block((wd / f"A_{v}" / "job.aux").read_text(errors="ignore"), "ATOM_CHARGES")
+    if q is None:
+        raise SystemExit(f"A_{v}/job.aux has no ATOM_CHARGES (see A_{v}/job.out); C2_{v} not written")
+    q = q[-len(lig):]
     d = wd / f"C2_{v}"
     d.mkdir(exist_ok=True)
     lines = (wd / f"C_{v}" / "job.mop").read_text().splitlines()

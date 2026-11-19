@@ -1,7 +1,7 @@
 """Run test-1 MOPAC jobs: python run_t1.py MOPAC WORK_DIR JOB[,JOB...] [PARALLEL] [TIMEOUT_S]
 
 Each job directory holds job.mop and env.json (extra environment); finished jobs (job.aux present and a
-status.json) are skipped. status.json: wall time, exit code, SCF status lines.
+status.json) are skipped. status.json: wall time, exit code, SCF status lines, MOPAC's error messages.
 """
 import json
 import os
@@ -13,10 +13,29 @@ from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 
 
+def messages(out):
+    """The messages MOPAC lists in the box at the end of job.out when a job did not end normally."""
+    i = out.rfind("Error and normal termination messages")
+    if i < 0:
+        return []
+    msgs = []
+    for ln in out[i:].splitlines()[1:]:
+        s = ln.strip().strip("*").strip()
+        if s.startswith("JOB ENDED NORMALLY"):
+            break
+        if s:
+            msgs.append(s)
+    return msgs[:5]
+
+
 def run_job(mopac, d, timeout):
     st = d / "status.json"
     if st.exists() and (d / "job.aux").exists():
-        return json.loads(st.read_text())
+        res = json.loads(st.read_text())
+        if res.get("heat") is None and (d / "job.out").exists():
+            res["errors"] = messages((d / "job.out").read_text(errors="ignore")) or res["errors"]
+            st.write_text(json.dumps(res, indent=1))
+        return res
     env = dict(os.environ)
     if (d / "env.json").exists():
         env.update(json.loads((d / "env.json").read_text()))
@@ -31,7 +50,7 @@ def run_job(mopac, d, timeout):
     res = {"job": d.name, "seconds": round(time.time() - t0, 1), "exit": code,
            "heat": (re.findall(r"FINAL HEAT OF FORMATION =\s+(-?\d+\.\d+)", out) or [None])[-1],
            "scf": re.findall(r"\[MOZYME GPU SCF\] status=\S+.*", log + out)[-3:],
-           "errors": [ln.strip() for ln in out.splitlines() if "ERROR" in ln.upper()][:5]}
+           "errors": messages(out) or [ln.strip() for ln in out.splitlines() if "ERROR" in ln.upper()][:5]}
     st.write_text(json.dumps(res, indent=1))
     return res
 
