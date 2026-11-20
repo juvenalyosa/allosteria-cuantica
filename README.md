@@ -7,7 +7,7 @@ y lo que viaja es mecánico?
 Los cálculos cuánticos usan el MOPAC de [juvenalyosa/mopac_gpu](https://github.com/juvenalyosa/mopac_gpu) (PM7, MOZYME,
 GPU). Este repositorio tiene los scripts, las estructuras preparadas, el cuaderno de Colab y los resultados.
 
-## Estado (2026-11-15)
+## Estado (2026-11-20)
 
 ### 1. Rastreo geométrico en cristales (`results/survey.txt`, `rotamers.txt`, `hbonds.txt`)
 
@@ -61,13 +61,31 @@ Cambio de las cargas atómicas de la proteína (e), mediana por distancia a la g
 - Los residuos del camino aromático no se afectan más que otros a la misma distancia (percentiles 3–87 entre los residuos
   a ±2 Å, en A − B, A − C y A − C2).
 
-Siguiente: `notebooks/allo_t1_colab_a100.ipynb` (Colab con A100, se detiene con otra GPU;
-[abrir en Colab](https://colab.research.google.com/github/juvenalyosa/allosteria-cuantica/blob/main/notebooks/allo_t1_colab_a100.ipynb))
-o `notebooks/allo_t1_colab.ipynb` (cualquier GPU;
-[abrir en Colab](https://colab.research.google.com/github/juvenalyosa/allosteria-cuantica/blob/main/notebooks/allo_t1_colab.ipynb))
-repite la base en GPU y añade
-`CUTOFF=25`, agua implícita, `CUTOFF=15` y SCF convencional. Pendiente también: si un relevo dinámico (con movimiento
-de átomos) lleva la señal; esta prueba es con geometría congelada.
+#### En GPU y en agua implícita (`results/test1_l4/`)
+
+Colab con una L4, el mismo código de MOPAC (commit `323b6076`), el camino de GPU:
+
+- La GPU reproduce la CPU: los calores de A, B, C y C2 difieren en 0,0003–0,0012 kcal/mol (entre dos corridas de CPU con
+  los átomos en otro orden, hasta 0,0025), y las tablas de cargas y fuerzas coinciden con las de CPU en dos cifras. Cada corrida tardó
+  unos 2 min (en CPU, 35–95 min).
+- Ruido: repetir la misma corrida en la GPU cambia las cargas en una mediana de 2–3·10⁻⁸ e, y el orden inverso de los
+  átomos en 3–8·10⁻⁸ e. El A − B más pequeño (30–40 Å, 5·10⁻⁵ e) es unas 2 000 veces mayor.
+- Agua (COSMO, `EPS=78.4`): A − B se reduce poco cerca de la glicina y más lejos. Cargas: 73–91 % del valor en vacío hasta
+  12 Å, 37–54 % más allá de 15 Å; fuerzas: 74–87 % hasta 10 Å, 38–43 % más allá de 15 Å. Las diferencias con C y C2 en agua
+  no se pueden comparar con A: según el código de este MOPAC, las cargas puntuales (`MM_CHARGES`) solo entran en el
+  hamiltoniano y COSMO no las apantalla, mientras que la glicina de A sí queda apantallada.
+- En vacío, A − C2 dividido por C2 − B (medianas por intervalo): 0,56–0,61 en las cargas entre 10 y 30 Å (0,48 a 30–40 Å)
+  y 0,37–0,53 en las fuerzas más allá de 8 Å.
+- Sin resultado: las seis corridas con `CUTOFF=15` y `CUTOFF=25` no convergieron (*THE SCF CALCULATION FAILED*, 300
+  iteraciones con `SCFCRT=2.D-6`), y el SCF convencional no terminó en 45 min por corrida. La pregunta de si el cociente
+  anterior depende del trato de largo alcance de MOZYME sigue abierta.
+
+Siguiente: `notebooks/allo_t1c_colab.ipynb` (cualquier GPU;
+[abrir en Colab](https://colab.research.google.com/github/juvenalyosa/allosteria-cuantica/blob/main/notebooks/allo_t1c_colab.ipynb)):
+la traza del SCF en GPU de una corrida con `CUTOFF=15` y la misma corrida en CPU (¿falla también?), y A, B y C2 con
+`SCFCRT=1.D-5` con el corte por defecto, `CUTOFF=15` y `CUTOFF=25`. Pendiente también: el SCF convencional en una GPU
+con doble precisión rápida (A100), y si un relevo dinámico (con movimiento de átomos) lleva la señal; esta prueba es con
+geometría congelada.
 
 ## Reproducir
 
@@ -85,6 +103,8 @@ python scripts/t1_tools.py c2 work/t1 cpu && python scripts/run_t1.py /ruta/a/mo
 python scripts/t1_tools.py analyse work/t1 results/test1_cpu
 python scripts/make_allo_t1_nb.py notebooks/allo_t1_colab.ipynb 323b6076 scripts structures/1PB7_atoms.csv
 python scripts/make_allo_t1_nb.py notebooks/allo_t1_colab_a100.ipynb 323b6076 scripts structures/1PB7_atoms.csv A100
+python scripts/t1_tools.py analyse work/t1_l4/runs results/test1_l4        # runs of the L4 session
+python scripts/make_allo_t1c_nb.py notebooks/allo_t1c_colab.ipynb 323b6076 scripts structures/1PB7_atoms.csv
 ```
 
 ## Referencias

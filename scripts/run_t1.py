@@ -1,7 +1,7 @@
 """Run test-1 MOPAC jobs: python run_t1.py MOPAC WORK_DIR JOB[,JOB...] [PARALLEL] [TIMEOUT_S]
 
 Each job directory holds job.mop and env.json (extra environment); finished jobs (job.aux present and a
-status.json) are skipped. status.json: wall time, exit code, SCF status lines, MOPAC's error messages.
+status.json) are skipped. job.log: MOPAC's screen output. status.json: wall time, exit code, SCF status lines, MOPAC's error messages.
 """
 import json
 import os
@@ -46,6 +46,7 @@ def run_job(mopac, d, timeout):
         code, log = p.returncode, p.stdout
     except subprocess.TimeoutExpired:
         code, log = "timeout", ""
+    (d / "job.log").write_text(log)
     out = (d / "job.out").read_text(errors="ignore") if (d / "job.out").exists() else ""
     res = {"job": d.name, "seconds": round(time.time() - t0, 1), "exit": code,
            "heat": (re.findall(r"FINAL HEAT OF FORMATION =\s+(-?\d+\.\d+)", out) or [None])[-1],

@@ -23,7 +23,8 @@ import numpy as np
 
 # MOZYME's density stops improving at ~1.5e-5 with its default LMO threshold (1e-13); RELTHR=0.01 (1e-15) takes it
 # to ~2e-6, where the energy wanders by a few 1e-6 kcal/mol between iterations, so SCFCRT=1e-7 never converges.
-COMMON = "PM7 1SCF GRADIENTS GEO-OK AUX(PRECISION=4) SCFCRT=2.D-6 RELTHR=0.01 ITRY=300"
+# XS, XP, XW: no overlap, density or M.O. matrices in the AUX file (1.7 GB per run for this protein; not used here).
+COMMON = "PM7 1SCF GRADIENTS GEO-OK AUX(PRECISION=4,XS,XP,XW) SCFCRT=2.D-6 RELTHR=0.01 ITRY=300"
 
 
 def load(atoms_csv):
@@ -45,7 +46,25 @@ VARIANTS = {          # name: (extra keywords, environment, MOZYME?)
     "rev": ("", {}, True),      # atoms in reverse order: same physics, another path through the SCF
     "c15": ("CUTOFF=15", {}, True), "c25": ("CUTOFF=25", {}, True), "eps": ("EPS=78.4", {}, True),
     "conv": ("", {}, False),
+    # CUTOFF=15 and 25 failed the SCF at SCFCRT=2.D-6 (L4, 300 iterations): the same at 1.D-5, with its own base
+    # and repeat, the GPU SCF trace of one failing job, and the CPU path of the same job
+    "vacl": ("SCFCRT=1.D-5", {}, True), "vacl2": ("SCFCRT=1.D-5", {}, True),
+    "c15l": ("CUTOFF=15 SCFCRT=1.D-5", {}, True), "c25l": ("CUTOFF=25 SCFCRT=1.D-5", {}, True),
+    "c15t": ("CUTOFF=15", {"MOPAC_MOZYME_SCF_TRACE": "1"}, True),
+    "c15cpu": ("CUTOFF=15 PL", {"MOPAC_NOGPU": "1"}, True),
 }
+
+
+def keywords(kw):
+    """COMMON with the variant's keywords; a keyword=value already in COMMON is replaced, not repeated."""
+    base, extra = COMMON, []
+    for tok in kw.split():
+        key = tok.split("=")[0] + "="
+        if "=" in tok and re.search(rf"(?<!\S){re.escape(key)}", base):
+            base = re.sub(rf"(?<!\S){re.escape(key)}\S+", tok, base)
+        else:
+            extra.append(tok)
+    return base, " ".join(extra)
 
 
 def write_decks(atoms_csv, wd, charge):
@@ -61,10 +80,11 @@ def write_decks(atoms_csv, wd, charge):
                 atoms = atoms[::-1]
             d = wd / f"{sysname}_{v}"
             d.mkdir(exist_ok=True)
-            extra = (" MOZYME" if mozyme else "") + (f" {kw}" if kw else "")
+            base, kws = keywords(kw)
+            extra = (" MOZYME" if mozyme else "") + (f" {kws}" if kws else "")
             if sysname == "C":
                 extra += ' MM_CHARGES="glycine.chg"' if mozyme else " QMMM"
-            (d / "job.mop").write_text(deck(atoms, f"{COMMON} CHARGE={charge}{extra}", f"{sysname} {v}"))
+            (d / "job.mop").write_text(deck(atoms, f"{base} CHARGE={charge}{extra}", f"{sysname} {v}"))
             (d / "env.json").write_text(json.dumps(env))
 
 
@@ -194,8 +214,21 @@ def analyse(wd, od):
                  ("A-C, CUTOFF=15", "A_c15", "C_c15"), ("A-C, CUTOFF=25", "A_c25", "C_c25"),
                  ("A-B, CUTOFF=25", "A_c25", "B_c25"), ("C2-B, CUTOFF=25", "C2_c25", "B_c25"),
                  ("A-C2, CUTOFF=25", "A_c25", "C2_c25"),
-                 ("A-B, water (COSMO)", "A_eps", "B_eps"), ("A-C, water (COSMO)", "A_eps", "C_eps"),
-                 ("C2-B, water (COSMO)", "C2_eps", "B_eps"), ("A-C2, water (COSMO)", "A_eps", "C2_eps"),
+                 ("A-B, water (COSMO)", "A_eps", "B_eps"),
+                 # MM_CHARGES enter only the core Hamiltonian; COSMO does not screen them, so in water C and C2
+                 # feel the glycine's charges unscreened while A's glycine is screened
+                 ("A-C, water (C unscreened)", "A_eps", "C_eps"), ("C2-B, water (C2 unscreened)", "C2_eps", "B_eps"),
+                 ("A-C2, water (C2 unscreened)", "A_eps", "C2_eps"),
+                 ("A-B, SCFCRT=1e-5", "A_vacl", "B_vacl"), ("C2-B, SCFCRT=1e-5", "C2_vacl", "B_vacl"),
+                 ("A-C2, SCFCRT=1e-5", "A_vacl", "C2_vacl"),
+                 ("noise A-A, SCFCRT=1e-5", "A_vacl", "A_vacl2"), ("noise B-B, SCFCRT=1e-5", "B_vacl", "B_vacl2"),
+                 ("A: SCFCRT 1e-5 - 2e-6", "A_vacl", "A_vac"),
+                 ("A-B, CUTOFF=15, 1e-5", "A_c15l", "B_c15l"), ("C2-B, CUTOFF=15, 1e-5", "C2_c15l", "B_c15l"),
+                 ("A-C2, CUTOFF=15, 1e-5", "A_c15l", "C2_c15l"),
+                 ("A-B, CUTOFF=25, 1e-5", "A_c25l", "B_c25l"), ("C2-B, CUTOFF=25, 1e-5", "C2_c25l", "B_c25l"),
+                 ("A-C2, CUTOFF=25, 1e-5", "A_c25l", "C2_c25l"),
+                 ("B: CUTOFF=15 - default, 1e-5", "B_c15l", "B_vacl"),
+                 ("B: CUTOFF=15, CPU - GPU", "B_c15cpu", "B_c15t"),
                  ("A-B, conventional SCF", "A_conv", "B_conv")]
         if what == "q":
             pairs.append(("A-C, conventional SCF (C: point potentials)", "A_conv", "C_conv"))
@@ -209,6 +242,21 @@ def analyse(wd, od):
             table += [{"quantity": what, "pair": label, "lo": lo, "hi": hi, "n": k, "median": med, "p95": p95,
                        "max": mx} for lo, hi, k, med, p95, mx in bs]
             lines.append(f"  {label:44s} " + " | ".join(f"{med:.1e}/{p95:.1e}/{mx:.1e}" for _, _, _, med, p95, mx in bs))
+        # the question of the CUTOFF runs: is A-C2 still ~0.6 times C2-B far from the glycine?
+        rows = []
+        for label, a, c2, b in (("default cutoff, 2e-6", "A_vac", "C2_vac", "B_vac"),
+                                ("default cutoff, CPU", "A_cpu", "C2_cpu", "B_cpu"),
+                                ("default cutoff, 1e-5", "A_vacl", "C2_vacl", "B_vacl"),
+                                ("CUTOFF=15, 1e-5", "A_c15l", "C2_c15l", "B_c15l"),
+                                ("CUTOFF=25, 1e-5", "A_c25l", "C2_c25l", "B_c25l")):
+            v1, v2 = diff(a, c2, what), diff(c2, b, what)
+            if v1 is None or v2 is None:
+                continue
+            rows.append(f"  {label:44s} " + " | ".join(f"{m1 / m2:6.2f}" for (_, _, _, m1, _, _), (_, _, _, m2, _, _)
+                                                        in zip(binned(r, v1), binned(r, v2))))
+        if rows:
+            lines.append(f"  median(A-C2) / median(C2-B) per bin:")
+            lines += rows
     with open(od / "binned.csv", "w", newline="") as f:
         w = csv.DictWriter(f, fieldnames=["quantity", "pair", "lo", "hi", "n", "median", "p95", "max"])
         w.writeheader()

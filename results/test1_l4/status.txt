@@ -1,0 +1,181 @@
+{
+ "job": "A_c15",
+ "seconds": 320.4,
+ "exit": 0,
+ "heat": null,
+ "scf": [],
+ "errors": [
+  "THE SCF CALCULATION FAILED."
+ ]
+}{
+ "job": "A_c25",
+ "seconds": 580.1,
+ "exit": 0,
+ "heat": null,
+ "scf": [],
+ "errors": [
+  "THE SCF CALCULATION FAILED."
+ ]
+}{
+ "job": "A_conv",
+ "seconds": 2700.9,
+ "exit": "timeout",
+ "heat": null,
+ "scf": [],
+ "errors": []
+}{
+ "job": "A_eps",
+ "seconds": 157.9,
+ "exit": 0,
+ "heat": "-23838.06040",
+ "scf": [],
+ "errors": []
+}{
+ "job": "A_r2",
+ "seconds": 130.1,
+ "exit": 0,
+ "heat": "-20220.21014",
+ "scf": [],
+ "errors": []
+}{
+ "job": "A_rev",
+ "seconds": 123.6,
+ "exit": 0,
+ "heat": "-20220.21233",
+ "scf": [],
+ "errors": []
+}{
+ "job": "A_vac",
+ "seconds": 124.2,
+ "exit": 0,
+ "heat": "-20220.21132",
+ "scf": [],
+ "errors": []
+}{
+ "job": "B_c15",
+ "seconds": 316.3,
+ "exit": 0,
+ "heat": null,
+ "scf": [],
+ "errors": [
+  "THE SCF CALCULATION FAILED."
+ ]
+}{
+ "job": "B_c25",
+ "seconds": 599.1,
+ "exit": 0,
+ "heat": null,
+ "scf": [],
+ "errors": [
+  "THE SCF CALCULATION FAILED."
+ ]
+}{
+ "job": "B_conv",
+ "seconds": 2700.8,
+ "exit": "timeout",
+ "heat": null,
+ "scf": [],
+ "errors": []
+}{
+ "job": "B_eps",
+ "seconds": 157.3,
+ "exit": 0,
+ "heat": "-23654.98893",
+ "scf": [],
+ "errors": []
+}{
+ "job": "B_r2",
+ "seconds": 128.4,
+ "exit": 0,
+ "heat": "-20020.32713",
+ "scf": [],
+ "errors": []
+}{
+ "job": "B_rev",
+ "seconds": 126.7,
+ "exit": 0,
+ "heat": "-20020.32770",
+ "scf": [],
+ "errors": []
+}{
+ "job": "B_vac",
+ "seconds": 118.0,
+ "exit": 0,
+ "heat": "-20020.32653",
+ "scf": [],
+ "errors": []
+}{
+ "job": "C2_eps",
+ "seconds": 158.9,
+ "exit": 0,
+ "heat": "-23805.52360",
+ "scf": [],
+ "errors": []
+}{
+ "job": "C2_vac",
+ "seconds": 119.1,
+ "exit": 0,
+ "heat": "-20162.50824",
+ "scf": [],
+ "errors": []
+}{
+ "job": "C_c15",
+ "seconds": 296.1,
+ "exit": 0,
+ "heat": null,
+ "scf": [],
+ "errors": [
+  "THE SCF CALCULATION FAILED."
+ ]
+}{
+ "job": "C_c25",
+ "seconds": 564.7,
+ "exit": 0,
+ "heat": null,
+ "scf": [],
+ "errors": [
+  "THE SCF CALCULATION FAILED."
+ ]
+}{
+ "job": "C_conv",
+ "seconds": 2700.8,
+ "exit": "timeout",
+ "heat": null,
+ "scf": [],
+ "errors": []
+}{
+ "job": "C_eps",
+ "seconds": 163.2,
+ "exit": 0,
+ "heat": "-23777.43808",
+ "scf": [],
+ "errors": []
+}{
+ "job": "C_r2",
+ "seconds": 123.9,
+ "exit": 0,
+ "heat": "-20135.32429",
+ "scf": [],
+ "errors": []
+}{
+ "job": "C_rev",
+ "seconds": 123.5,
+ "exit": 0,
+ "heat": "-20135.32602",
+ "scf": [],
+ "errors": []
+}{
+ "job": "C_vac",
+ "seconds": 123.3,
+ "exit": 0,
+ "heat": "-20135.32482",
+ "scf": [],
+ "errors": []
+}{
+ "job": "D",
+ "seconds": 2.3,
+ "exit": 0,
+ "heat": "-53.69822",
+ "scf": [],
+ "errors": []
+}
